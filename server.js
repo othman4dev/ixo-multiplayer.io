@@ -11,15 +11,12 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// Serve static files (e.g., HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, 'public'))); // 'public' is the folder where your HTML and other assets are
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve the index.html file for the root URL
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Database connection
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -33,9 +30,6 @@ db.connect(err => {
 });
 
 io.on('connection', (socket) => {
-    console.log('New player connected:', socket.id);
-
-    // Handle game creation
     socket.on('createGame', (callback) => {
         const gameId = generateGameId();
         const query = 'INSERT INTO games (game_id, player1_id, current_turn, status) VALUES (?, ?, ?, ?)';
@@ -61,7 +55,6 @@ io.on('connection', (socket) => {
         });
     })
 
-    // Handle joining a game
     socket.on('joinGame', (gameId,callback) => {
         const query2 = 'SELECT * FROM games WHERE game_id = ?';
         const query = 'SELECT player2_id FROM games WHERE game_id = ?';
@@ -86,14 +79,12 @@ io.on('connection', (socket) => {
         });
     });
 
-    // Handle player moves
     socket.on('playerMove', ({ gameIdLocal, x, y, mark, win }) => {
         if (win) {
             if (mark == 'x') {
                 let winnerQuery = 'SELECT * FROM games WHERE game_id = ?';
                 db.query(winnerQuery, [gameIdLocal], (err, winner_info) => {
                     if (err) throw err;
-                    console.log(`Player  with ${mark} wins`);
                     let winQuery = "UPDATE games SET status = 'finished' WHERE game_id = ?";
                     let winQuery2 = 'UPDATE games SET winner_id = ? WHERE game_id = ?';
                     db.query(winQuery, [gameIdLocal]);
@@ -103,7 +94,6 @@ io.on('connection', (socket) => {
                 let winnerQuery = 'SELECT * FROM games WHERE game_id = ?';
                 db.query(winnerQuery, [gameIdLocal], (err, winner_info) => {
                     if (err) throw err;
-                    console.log(`Player  with ${mark} wins`);
                     let winQuery = "UPDATE games SET status = 'finished' WHERE game_id = ?";
                     let winQuery2 = 'UPDATE games SET winner_id = ? WHERE game_id = ?';
                     db.query(winQuery, [gameIdLocal]);
@@ -138,14 +128,12 @@ io.on('connection', (socket) => {
     });
 
     socket.on('rematchGame', (gameIdLocal) => {
-        console.log('rematch request game id:', gameIdLocal);
         var rematches = 0;
         let p1_id = '';
         let p2_id = '';
         let queryx = 'SELECT * FROM games WHERE game_id = ?';
         db.query(queryx, gameIdLocal, (err,resultx) => {
             if (err) throw err;
-            console.log(resultx[0]);
             p1_id = resultx[0].player1_id;
             p2_id = resultx[0].player2_id;
             rematches = resultx[0].rematches;
@@ -154,7 +142,6 @@ io.on('connection', (socket) => {
             db.query(query3, [rematches, gameIdLocal], (err) => {
                 if (err) throw err;
                 if (rematches == 2) {
-                    console.log('test1');
                     const gameId = generateGameId();
                     let query2 = 'INSERT INTO games (game_id, player1_id, player2_id,current_turn, status) VALUES (?, ?, ?, ?, ?)';
                     db.query(query2, [gameId, p1_id, p2_id, p1_id, 'ongoing'], (err, result) => {
@@ -168,12 +155,10 @@ io.on('connection', (socket) => {
                     io.to(p1_id).emit('AddOneRematchRequest', { gameId: gameIdLocal });
                     io.to(p2_id).emit('AddOneRematchRequest', { gameId: gameIdLocal });
                 }
-                console.log('rematch count:', rematches);
             })
         })
     })
 
-    // Handle disconnects
     socket.on('disconnect', () => {
         let p2;
         let search = "SELECT * FROM games WHERE status = ? AND player1_id = ?";
@@ -185,38 +170,31 @@ io.on('connection', (socket) => {
         db.query(search, ['ongoing', socket.id], (err,result) => {
             if (err) throw err;
             if (result.length !== 0) {
-                console.log('Player wasn\'t playing');
+                // just disconnect the player
             } else
             if (result[0]) {
                 io.to(result[0].player2_id).emit('opponentResigned');
-                console.log('player 1 resigned');
                 db.query(updateQuery, [socket.id], (err2) => {
                     if (err2) throw err2;
-                    console.log('Game Updated');
                 });
                 db.query(winnerQuery, [result[0].player2_id,socket.id], (err3) => {
                     if (err3) throw err3;
-                    console.log('Winner set');
                 });
             } else {
                 db.query(search2, ['ongoing',socket.id], (err4,result2) => {
                     if (err4) throw err4;
                     if (result2[0]) {
                         io.to(result2[0].player1_id).emit('opponentResigned');
-                        console.log('player 2 resigned');
                         db.query(updateQuery2, [socket.id], (err5) => {
                             if (err5) throw err5;
-                            console.log('Game Updated');
                         });
                         db.query(winnerQuery2, [result2[0].player2_id,socket.id], (err6) => {
                             if (err6) throw err6;
-                            console.log('Winner set');
                         });
                     }
                 });
             }
         })
-        console.log('Player disconnected:', socket.id);
     });
 });
 
@@ -249,7 +227,6 @@ function showWins(list,gameId, playerId) {
         }
         timeout += 200;
     });
-    console.log(list);
     setTimeout(() => {
         showWinnerOnline(gameId, playerId);
     }, timeout + 1000);

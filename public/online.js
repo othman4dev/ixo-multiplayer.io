@@ -194,7 +194,6 @@ function showWin(list) {
 
 function youWin() {
     wins++;
-    console.log('You won');
     document.getElementById('rematch-btn').style.display = 'none';
     showHideProtection('show');
     document.getElementById('main').style.backgroundColor = 'rgb(24, 111, 203)';
@@ -211,13 +210,11 @@ function showWinner() {
     let winner = lastMove;
     if (winner == playerName) {
         wins++;
-        console.log('You won');
         document.getElementById('main').style.backgroundColor = 'rgb(24, 111, 203)';
         document.getElementById('winner').style.display = 'flex';
         document.getElementById('winner-message').innerText = 'You Won';
     } else {
         losses++;
-        console.log('You lost');
         document.getElementById('main').style.backgroundColor = 'rgb(203, 36, 24)';
         document.getElementById('winner').style.display = 'flex';
         document.getElementById('winner-message').innerText = 'You Lost';
@@ -274,7 +271,7 @@ function showGameIDInput() {
 
 function alertForm(message) {
     document.getElementById('form-message').style.display = 'block';
-    document.getyouwinElementById('form-message').innerText = message;
+    document.getElementById('form-message').innerText = message;
 }
 
 

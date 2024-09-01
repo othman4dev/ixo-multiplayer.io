@@ -506,7 +506,6 @@
         let socketID = socket.id;
 
         socket.emit('resigned', ({ gameIdLocal, socketID }) => {
-            console.log('Resigned');
             window.location.href = 'index.html';
             losses++;
             setScore();
@@ -527,7 +526,6 @@
 
     const loadHandler = () => {
         let losses = localStorage.getItem('losses') || 0;
-        console.log(`Total losses: ${losses}`);
     };
 
 function identifyAction() {
@@ -542,7 +540,6 @@ function identifyAction() {
 }
 identifyAction();
 
-// Create a new game
 function createGame() {
     socket.emit('createGame', ({ success, gameId, playerId }) => {
         if (success) {
@@ -552,14 +549,13 @@ function createGame() {
             gameIdLocal = gameId;
             player1IdLocal = playerId;
             mark = 'x';
-            console.log(`Game created with ID: ${gameId}`);
             document.getElementById('show-id').style.display = 'block';
             document.getElementById('id-share').innerText = gameId;
             showHideProtection('show');
             playerName = 'p1';
             opponentName = 'p2';
         } else {
-            console.log('Game wasn\'t created.');
+            alert('Error creating game, please try again later.');
         }
     });
 }
@@ -569,8 +565,6 @@ function joinGame() {
     showHideProtection('show');
 }
 
-
-// Join an existing game
 function getInGame(el) {
     let gameId = document.getElementById('game_id').value;
     document.getElementById('resign').style.display = 'block';
@@ -598,14 +592,12 @@ function getInGame(el) {
             opponentName = 'p1';
             info('Game Started');
             setTimeout(() => {
-                console.log('Joined game successfully:', response.gameId);
                 socket.emit('gameStart', response.gameId);
                 document.getElementById('game-id').style.display = 'none';
                 showTurn();
             }, 600);
         } else {
             el.innerHTML = `Join Game`;
-            console.log(response.message);
             alertForm('Game is full, expired or does not exist');
         }
     });
@@ -620,10 +612,9 @@ socket.on('opponentResigned', () => {
 function clickCase(el) {
     if (el.classList.contains('x') || el.classList.contains('o')) {
         //This guy is a hacker, played with the console.
-        io.emit('hacker', socket.id);
+        io.emit('hacker', {player: socket.id, gameId: gameIdLocal});
         console.warn('You were banned from this game for cheating. ( trying to change initial game code )');
     }
-    console.log(`Player : ${playerName} clicked : ( x = ${el.dataset.row} , y = ${el.dataset.col} ).`);
     if (document.querySelectorAll('.case').length == document.querySelectorAll('.x').length + document.querySelectorAll('.o').length) {
         showHideProtection('show');
         document.getElementById('main').style.backgroundColor = 'rgb(24, 111, 203)';
@@ -663,7 +654,6 @@ function resigned() {
 }
 
 function playerMoved(playerId,x,y,mark) {
-    console.log('playerMoved');
     if (mark == 'x') {
         let square = document.querySelector(`[data-row='${x}'][data-col='${y}']`);
         square.innerHTML = `<i class="bi bi-x-lg" style="color: rgb(24, 111, 203)"></i>`;
@@ -685,7 +675,6 @@ function playerMoved(playerId,x,y,mark) {
 }
 
 function playerMove(playerId,x,y,mark) {
-    console.log('playerMove');
     if (mark == 'x') {
         let square = document.querySelector(`[data-row='${x}'][data-col='${y}']`);
         square.innerHTML = `<i class="bi bi-x-lg" style="color: rgb(24, 111, 203)"></i>`;
@@ -703,12 +692,10 @@ function playerMove(playerId,x,y,mark) {
     showTurn();
 }
 
-// Listen for moves from other players
 socket.on('playerMoved', ({ playerId, x, y, mark }) => {
     playerMoved(playerId, x, y, mark);
 });
 
-// Listen for game start
 socket.on('gameStart', ({ gameId, player1Id, player2Id }) => {
     gameIdLocal = gameId;
     document.querySelectorAll('.case').forEach(element => {
@@ -724,7 +711,6 @@ socket.on('gameStart', ({ gameId, player1Id, player2Id }) => {
     });
     document.getElementById('rematch-btn').disabled = false;
     document.getElementById('rematch-count').innerText = '( 0 / 2 )';
-    console.log(`Game started with ID: ${gameId} between Player 1: ${player1Id} and Player 2: ${player2Id}`);
     document.getElementById('game-id').style.display = 'none';
     document.getElementById('show-id').style.display = 'none';
     document.getElementById('winner').style.display = 'none';
@@ -744,7 +730,6 @@ socket.on('gameStart', ({ gameId, player1Id, player2Id }) => {
 });
 
 socket.on('AddOneRematchRequest', () => {
-    console.log('Rematch count updated');
     let initial = parseInt(document.getElementById('rematch-count').innerText.split('/')[0].split('(')[1]);
     initial++;
     document.getElementById('rematch-count').innerText = '( ' + initial + ' / 2 )';

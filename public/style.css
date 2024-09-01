@@ -53,8 +53,8 @@ nav ul li a:hover {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(20, 1fr);
-    width: 600px;
-    height: 600px;
+    width: 80vh;
+    height: 80vh;
 }
 .case {
     border: solid 1px #0000007c;
