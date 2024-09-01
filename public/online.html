@@ -36,7 +36,7 @@
                     <div class="count" id="count2">0</div>
                 </div>
             </div>
-            <button class="clear" onclick="clearCounter()">Start Over</button>
+            <button class="clear" id="resign" onclick="resign()">Resign</button>
         </div>
         <div class="game-pad">
             <div class="case" id="1" onclick="clickCase(this)"></div>
@@ -477,6 +477,18 @@
             When someone will join the game you will start the game, until then wait.
         </p>
     </div>
+    <div class="winner" id="resign-confirmation">
+        <h2 id="winner-message">By Resigning you will lose the game.</h2>
+        <div class="buttons">
+            <button class="play-again" onclick="resigned()" id="rematch-btn">Resign<br> <p style="font-size: 9px;" id="rematch-count">( 0 / 2 )</p></button>
+            <button class="play-again" onclick="this.parentNode.parentNode.style.display = 'none';">Cancel</button>
+        </div>
+    </div>
+    <div class="info-pop" id="info-pop">
+        <p class="info-message" id="info-message">
+
+        </p>
+    </div>
     <div id="protection"></div>
 </body>
 </html>
@@ -489,6 +501,17 @@
     let gameIdLocal = '';
     let player1IdLocal = '';
     let player2IdLocal = '';
+
+    function resign() {
+        let socketID = socket.id;
+
+        socket.emit('resigned', ({ gameIdLocal, socketID }) => {
+            console.log('Resigned');
+            window.location.href = 'index.html';
+            losses++;
+            setScore();
+        });
+    }
 
     const beforeUnloadHandler = (event) => {
         const confirmationMessage = 'Are you sure you want to leave? You will lose the game if you exit.';
@@ -550,7 +573,7 @@ function joinGame() {
 // Join an existing game
 function getInGame(el) {
     let gameId = document.getElementById('game_id').value;
-
+    document.getElementById('resign').style.display = 'block';
     window.addEventListener('beforeunload', beforeUnloadHandler);
     window.addEventListener('unload', unloadHandler);
     window.addEventListener('load', loadHandler);
@@ -560,39 +583,47 @@ function getInGame(el) {
         return;
     }
     el.innerHTML = `<div class="loader"></div>`;
-    document.getElementById('form-message').innerText = '';
-    document.getElementById('game_id').style.display = 'none';
     setTimeout(() => {
         socket.emit('joinGame', gameId, (response) => {
         if (response.success) {
+            document.getElementById('form-message').innerText = '';
+            document.getElementById('game_id').style.display = 'none';
             showHideProtection('show');
             el.innerHTML = `Game was found. Joining...`;
+            mark = 'o';
+            turn = 1;
+            gameIdLocal = response.gameId;
+            color = blue;
+            playerName = 'p2';
+            opponentName = 'p1';
+            info('Game Started');
             setTimeout(() => {
                 console.log('Joined game successfully:', response.gameId);
                 socket.emit('gameStart', response.gameId);
                 document.getElementById('game-id').style.display = 'none';
-                mark = 'o';
-                turn = 1;
-                gameIdLocal = response.gameId;
-                console.log(gameIdLocal);
-                color = blue;
-                playerName = 'p2';
-                opponentName = 'p1';
                 showTurn();
             }, 600);
         } else {
             el.innerHTML = `Join Game`;
             console.log(response.message);
-            alertForm('Game is full or does not exist');
+            alertForm('Game is full, expired or does not exist');
         }
     });
     }, 600);
     turn = 2;
 }
 
+socket.on('opponentResigned', () => {
+    youWin();
+});
+
 function clickCase(el) {
-    console.log('click case');
-    
+    if (el.classList.contains('x') || el.classList.contains('o')) {
+        //This guy is a hacker, played with the console.
+        io.emit('hacker', socket.id);
+        console.warn('You were banned from this game for cheating. ( trying to change initial game code )');
+    }
+    console.log(`Player : ${playerName} clicked : ( x = ${el.dataset.row} , y = ${el.dataset.col} ).`);
     if (document.querySelectorAll('.case').length == document.querySelectorAll('.x').length + document.querySelectorAll('.o').length) {
         showHideProtection('show');
         document.getElementById('main').style.backgroundColor = 'rgb(24, 111, 203)';
@@ -603,16 +634,17 @@ function clickCase(el) {
     if (playerName == 'p1') {
         el.innerHTML = `<i class="bi bi-x-lg" style="color: rgb(24, 111, 203)"></i>`;
         el.classList.add('x');
+        el.removeAttribute('onclick');
         el.onclick = null;
         lastMove = 'p1';
         color = red;
         showHideProtection('show');
         showTurn();
-        
         socket.emit('playerMove', { gameIdLocal, x: el.dataset.row, y: el.dataset.col, mark: mark , win: checkWin(el)});
     } else {
         el.innerHTML = `<i class="bi bi-circle" style="color: rgb(203, 36, 24)"></i>`;
         el.classList.add('o');
+        el.removeAttribute('onclick');
         el.onclick = null;
         lastMove = 'p2';
         color = blue;
@@ -623,24 +655,27 @@ function clickCase(el) {
     
 }
 
+function resigned() {
+    losses++;
+    setScore();
+    updateScore();
+    window.location.href = 'index.html';
+}
+
 function playerMoved(playerId,x,y,mark) {
     console.log('playerMoved');
     if (mark == 'x') {
         let square = document.querySelector(`[data-row='${x}'][data-col='${y}']`);
         square.innerHTML = `<i class="bi bi-x-lg" style="color: rgb(24, 111, 203)"></i>`;
         square.classList.add('x');
-        square.onclick = function() {
-            clickCase(this);
-        };
+        square.onclick = null;
         lastMove = 'p1';
         color = red;
     } else {
         let square = document.querySelector(`[data-row='${x}'][data-col='${y}']`);
         square.innerHTML = `<i class="bi bi-circle" style="color: rgb(203, 36, 24)"></i>`;
         square.classList.add('o');
-        square.onclick = function() {
-            clickCase(this);
-        };
+        square.onclick = null;
         lastMove = 'p2';
         color = blue;
     }
@@ -675,33 +710,52 @@ socket.on('playerMoved', ({ playerId, x, y, mark }) => {
 
 // Listen for game start
 socket.on('gameStart', ({ gameId, player1Id, player2Id }) => {
+    gameIdLocal = gameId;
+    document.querySelectorAll('.case').forEach(element => {
+        element.onclick = function() {
+            clickCase(this);
+        };
+        element.style.border = 'solid 1px #0000007c';
+        element.classList.remove('x');
+        element.classList.remove('o');
+        element.innerHTML = '';
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = 'none';
+    });
+    document.getElementById('rematch-btn').disabled = false;
+    document.getElementById('rematch-count').innerText = '( 0 / 2 )';
     console.log(`Game started with ID: ${gameId} between Player 1: ${player1Id} and Player 2: ${player2Id}`);
     document.getElementById('game-id').style.display = 'none';
     document.getElementById('show-id').style.display = 'none';
-    showHideProtection('hide');
-});
-
-function playFirst(gameId, playerId) {
-    console.log(`Player ${playerId} will play first`);
-    document.getElementById('show-id').style.display = 'none';
-    showHideProtection('hide');
-}
-
-socket.on('startGameFirst', ({ gameId, playerId }) => {
-    playFirst(gameId, playerId);
-});
-
-socket.on('startGameSecond', ({ gameId, playerId, x, y, mark }) => {
-    playerMove(playerId, x, y, mark);
+    document.getElementById('winner').style.display = 'none';
+    info('Game Started');
+    if (playerName == 'p1') {
+        lastMove = 'p2';
+        color = blue;
+        showHideProtection('hide');
+        mark = 'x';
+    } else {
+        lastMove = 'p2';
+        color = red;
+        showHideProtection('show');
+        mark = 'o';
+    }
+    showTurn();
 });
 
 socket.on('AddOneRematchRequest', () => {
-    let initial = parseInt(document.getElementById('rematch-count').innerText.split('/')[1].split('(')[0]);
+    console.log('Rematch count updated');
+    let initial = parseInt(document.getElementById('rematch-count').innerText.split('/')[0].split('(')[1]);
     initial++;
     document.getElementById('rematch-count').innerText = '( ' + initial + ' / 2 )';
 })
 
 function continueOnlineGame() {
     socket.emit('rematchGame', gameIdLocal);
+    document.getElementById('rematch-btn').disabled = true;
+}
+
+function resign() {
+    document.getElementById('resign-confirmation').style.display = 'flex';
 }
 </script>

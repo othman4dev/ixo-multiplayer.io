@@ -191,7 +191,7 @@ main {
     align-items: center;
     justify-content: space-evenly;
     height: 45px;
-    flex: 0.3;
+    flex-grow: 0.3;
     width: 30%;
 }
 .play-again:hover {
@@ -496,5 +496,34 @@ main {
   }
   .gameID-title {
     font-size: 25px;
+    font-weight: 800;
+  }
+  #info-pop {
+    min-width: 200px;
+    width: fit-content;
+    min-height: 70px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0 0 12px 1px #0000003a;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 11;
+    background-color: #fff;
+    color: rgb(24, 111, 203);
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    display: none;
+  }
+  .info-message {
+    font-size: 20px;
+    color: rgb(24, 111, 203);
+    text-align: center;
+    width: 100%;
     font-weight: 800;
   }

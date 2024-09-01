@@ -58,6 +58,7 @@ function clickCase(el) {
     }
     checkWin(el);
 }
+
 function showTurn() {
     modifyHoverStyle('.case', `background-color: ${color};`);
     if (turn === 2) {

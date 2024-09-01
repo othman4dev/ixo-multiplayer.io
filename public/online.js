@@ -149,10 +149,23 @@ function checkWin(el) {
 
     if (checkHorizontal() || checkVertical() || checkDiagonal1() || checkDiagonal2()) {
         showWin(checked);
+        return true;
     } else {
         return false;
     }
 }
+
+
+function info(message) {
+    document.getElementById('info-message').innerText = message;
+    document.getElementById('info-pop').style.display = 'flex';
+    document.getElementById('info-pop').style.animationName = 'popup';
+    setTimeout(() => {
+        document.getElementById('info-pop').style.display = 'none';
+        document.getElementById('info-pop').style.animationName = 'none';
+    }, 805);
+}
+
 function showWin(list) {
     showHideProtection('show');
     let timeout = 0;
@@ -178,6 +191,20 @@ function showWin(list) {
         el.style.cursor = 'default';
     });
 }
+
+function youWin() {
+    wins++;
+    console.log('You won');
+    document.getElementById('rematch-btn').style.display = 'none';
+    showHideProtection('show');
+    document.getElementById('main').style.backgroundColor = 'rgb(24, 111, 203)';
+    document.getElementById('winner').style.display = 'flex';
+    document.getElementById('winner-message').innerText = 'You Won By Resign';
+    setScore();
+    updateScore();
+    removeEventListeners();
+}
+
 function showWinner() {
     removeEventListeners();
     showHideProtection('show');
@@ -247,7 +274,7 @@ function showGameIDInput() {
 
 function alertForm(message) {
     document.getElementById('form-message').style.display = 'block';
-    document.getElementById('form-message').innerText = message;
+    document.getyouwinElementById('form-message').innerText = message;
 }
 
 
