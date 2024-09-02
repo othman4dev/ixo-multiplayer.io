@@ -480,8 +480,8 @@
     <div class="winner" id="resign-confirmation">
         <h2 id="winner-message">By Resigning you will lose the game.</h2>
         <div class="buttons">
-            <button class="play-again" onclick="resigned()" id="rematch-btn">Resign<br> <p style="font-size: 9px;" id="rematch-count">( 0 / 2 )</p></button>
-            <button class="play-again" onclick="this.parentNode.parentNode.style.display = 'none';">Cancel</button>
+            <button class="play-again danger" onclick="resigned()" id="rematch-btn">Resign</button>
+            <button class="play-again cancel" onclick="this.parentNode.parentNode.style.display = 'none';">Cancel</button>
         </div>
     </div>
     <div class="info-pop" id="info-pop">
@@ -661,6 +661,14 @@ function playerMoved(playerId,x,y,mark) {
         square.onclick = null;
         lastMove = 'p1';
         color = red;
+        document.querySelectorAll('.p1-last').forEach(element => {
+            element.classList.remove('p1-last');
+        });
+        document.querySelectorAll('.p2-last').forEach(element => {
+            element.classList.remove('p2-last');
+        });
+        square.classList.add('p1-last');
+        console.log(square.classList);
     } else {
         let square = document.querySelector(`[data-row='${x}'][data-col='${y}']`);
         square.innerHTML = `<i class="bi bi-circle" style="color: rgb(203, 36, 24)"></i>`;
@@ -668,26 +676,16 @@ function playerMoved(playerId,x,y,mark) {
         square.onclick = null;
         lastMove = 'p2';
         color = blue;
+        document.querySelectorAll('.p2-last').forEach(element => {
+            element.classList.remove('p2-last');
+        });
+        document.querySelectorAll('.p1-last').forEach(element => {
+            element.classList.remove('p1-last');
+        });
+        square.classList.add('p2-last');
+        console.log(square.classList);
     }
     checkWin(document.querySelector(`[data-row='${x}'][data-col='${y}']`));
-    showHideProtection('hide');
-    showTurn();
-}
-
-function playerMove(playerId,x,y,mark) {
-    if (mark == 'x') {
-        let square = document.querySelector(`[data-row='${x}'][data-col='${y}']`);
-        square.innerHTML = `<i class="bi bi-x-lg" style="color: rgb(24, 111, 203)"></i>`;
-        square.classList.add('x');
-        lastMove = 'p1';
-        color = red;
-    } else {
-        let square = document.querySelector(`[data-row='${x}'][data-col='${y}']`);
-        square.innerHTML = `<i class="bi bi-circle" style="color: rgb(203, 36, 24)"></i>`;
-        square.classList.add('o');
-        lastMove = 'p2';
-        color = blue;
-    }
     showHideProtection('hide');
     showTurn();
 }

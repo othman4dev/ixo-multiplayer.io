@@ -219,6 +219,12 @@ function showWinner() {
         document.getElementById('winner').style.display = 'flex';
         document.getElementById('winner-message').innerText = 'You Lost';
     }
+    document.querySelectorAll('.x').forEach((el) => {
+        el.classList.remove('x');
+    });
+    document.querySelectorAll('.o').forEach((el) => {
+        el.classList.remove('o');
+    });
     setScore();
     updateScore();
 }

@@ -12,6 +12,7 @@ iox.io is a web-based game where two players take turns marking spaces in a grid
 - CSS
 - JavaScript
 - Bootstrap Icons
+- Node js ( Express js, socketIo )
 
 ## How to install
 
@@ -30,9 +31,13 @@ Open folder in Visual Studio Code :
 ```md
     code .
 ```
-Now you need to start your [Live server](ritwickdey.LiveServer) extention or [Live preview](microsoft.LivePreview).
+Now start your node server
+```md
+    node server.js
+```
+Now navigate to [http://localhost:3000/](http://localhost:3000/)
 
-### Or simply navigate to [The game online](https://othman4dev.github.io/iox.io/) .
+### Or simply navigate to [The game online](https://tictactoe.otmankharbouch.live) .
 
 ## How to Play
 1. The game is played on a grid 20x20.
@@ -40,8 +45,45 @@ Now you need to start your [Live server](ritwickdey.LiveServer) extention or [Li
 3. The first player to align 5 successive symbols in any direction (horizontal, vertical, or diagonal) wins the game.
 4. If all cells are filled and no player has aligned 5 symbols, the game ends in a draw.
 
+## Documentation
+
+- This game was written in JavaScript for web single-play and multi-play.
+- This game uses the webSockets by SocketIo package technology to maintain real time communication between the client-side and server-side.
+
+### Project Structure
+
+```plaintext
+ixo_multiplayer.io/
+├── node_modules/
+├── public/
+│   ├── images/
+│   ├── index.html
+│   ├── script.js
+│   ├── online.js
+│   ├── online.html
+│   └── style.css
+├── README.md
+├── .env
+├── .env-online
+├── package.json
+└── package-lock.json
+```
+
+| Directory/File     | Description                                      |
+|--------------------|--------------------------------------------------|
+| `node_modules/`     | Contains npm dependencies                        |
+| `public/`           | Front-end assets and HTML files                  |
+| `public/images/`    | Images used in the project                       |
+| `public/index.html` | Main HTML file                                   |
+| `public/script.js`  | Client-side JavaScript                           |
+| `public/style.css`  | Main stylesheet                                  |
+| `.env`              | Development environment variables                |
+| `.env-online`       | Production environment variables                 |
+| `package.json`      | Project metadata and npm scripts                 |
+| `README.md`         | Project documentation                            |
+
 ## Links
-- [Play the Game](https://othman4dev.github.io/iox.io/)
+- [Play the Game](https://tictactoe.otmankharbouch.live)
 - [GitHub Repository](https://github.com/othman4dev/iox.io)
 - [Developer's Portfolio](http://otmankharbouch.live)
 
