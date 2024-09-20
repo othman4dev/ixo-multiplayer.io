@@ -347,6 +347,7 @@ main {
     padding: 15px;
     display: none;
     z-index: 10;
+    padding-bottom: 10px;
 }
 .gameID-title {
     color: rgb(24, 111, 203);
@@ -464,6 +465,8 @@ main {
     justify-content: space-evenly;
     display: none;
     z-index: 10;
+    box-shadow: 0 0 12px 1px #0000003a;
+    padding-bottom: 25px;
   }
   #id-share {
     font-size: 40px;
