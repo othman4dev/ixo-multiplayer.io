@@ -15,30 +15,6 @@ function removeEventListeners() {
     window.removeEventListener('load', loadHandler);
 }
 
-function setScore() {
-    localStorage.setItem('wins', wins);
-    localStorage.setItem('losses', losses);
-}
-
-function getScore() {
-    if (!localStorage.getItem('wins')) {
-        localStorage.setItem('wins', 0);
-    } else {
-        wins = localStorage.getItem('wins');
-    }
-    if (!localStorage.getItem('losses')) {
-        localStorage.setItem('losses', 0);
-    } else {
-        losses = localStorage.getItem('losses');
-    }
-    updateScore();
-}
-getScore();
-function updateScore() {    
-    document.getElementById('count1').innerText = wins;
-    document.getElementById('count2').innerText = losses;
-}
-
 const elements = document.querySelectorAll('.case');
 
 elements.forEach((element, index) => {
@@ -71,90 +47,6 @@ function showTurn() {
         document.getElementById('turns').style.animationName = 'none';
     }, 805);
 }
-function checkWin(el) {
-    const mark = el.classList[el.classList.length - 1];
-    const row = parseInt(el.dataset.row);
-    const col = parseInt(el.dataset.col);
-    let checked = [];
-
-    function checkHorizontal() {
-        let count = 0;
-        for (let i = -4; i <= 4; i++) {
-            const c = col + i;
-            const cell = document.querySelector(`[data-row='${row}'][data-col='${c}']`);
-            if (cell && cell.classList.contains(mark)) {
-                checked.push(cell);
-                count++;
-                if (count === 5) return checked;
-            } else {
-                checked = [];
-                count = 0;
-            }
-        }
-        return false;
-    }
-
-    function checkVertical() {
-        let count = 0;
-        for (let i = -4; i <= 4; i++) {
-            const r = row + i;
-            const cell = document.querySelector(`[data-row='${r}'][data-col='${col}']`);
-            if (cell && cell.classList.contains(mark)) {
-                checked.push(cell);
-                count++;
-                if (count === 5) return checked;
-            } else {
-                checked = [];
-                count = 0;
-            }
-        }
-        return false;
-    }
-
-    function checkDiagonal1() {
-        let count = 0;
-        for (let i = -4; i <= 4; i++) {
-            const r = row + i;
-            const c = col + i;
-            const cell = document.querySelector(`[data-row='${r}'][data-col='${c}']`);
-            if (cell && cell.classList.contains(mark)) {
-                checked.push(cell);
-                count++;
-                if (count === 5) return checked;
-            } else {
-                checked = [];
-                count = 0;
-            }
-        }
-        return false;
-    }
-
-    function checkDiagonal2() {
-        let count = 0;
-        for (let i = -4; i <= 4; i++) {
-            const r = row + i;
-            const c = col - i;
-            const cell = document.querySelector(`[data-row='${r}'][data-col='${c}']`);
-            if (cell && cell.classList.contains(mark)) {
-                checked.push(cell);
-                count++;
-                if (count === 5) return checked;
-            } else {
-                checked = [];
-                count = 0;
-            }
-        }
-        return false;
-    }
-
-    if (checkHorizontal() || checkVertical() || checkDiagonal1() || checkDiagonal2()) {
-        showWin(checked);
-        return true;
-    } else {
-        return false;
-    }
-}
-
 
 function info(message) {
     document.getElementById('info-message').innerText = message;
@@ -199,8 +91,6 @@ function youWin() {
     document.getElementById('main').style.backgroundColor = 'rgb(24, 111, 203)';
     document.getElementById('winner').style.display = 'flex';
     document.getElementById('winner-message').innerText = 'You Won By Resign';
-    setScore();
-    updateScore();
     removeEventListeners();
 }
 
@@ -225,8 +115,6 @@ function showWinner() {
     document.querySelectorAll('.o').forEach((el) => {
         el.classList.remove('o');
     });
-    setScore();
-    updateScore();
 }
 
 function continueGame() {
@@ -245,15 +133,6 @@ function continueGame() {
     turn = 1;
     color = blue;
     showTurn();
-}
-
-function clearCounter() {
-    showHideProtection('hide');
-    wins = 0;
-    losses = 0;
-    setScore();
-    updateScore();
-    continueGame();
 }
 
 function modifyHoverStyle(selector, newStyle) {

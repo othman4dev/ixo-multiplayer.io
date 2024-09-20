@@ -17,27 +17,13 @@
         </div>
         <nav>
             <ul>
-                <li><i class="bi bi-github"></i><a href="https://github.com/othman4dev/iox.io">GitHub</a></li>
-                <li><i class="bi bi-coin"></i><a href="buymeacoffee.com/OthmanKharbouch">Support</a></li>
-                <li><i class="bi bi-code-slash"></i><a href="https://otmankharbouch.live">Developper</a></li>
+                <a href="https://github.com/othman4dev/iox.io"><li><i class="bi bi-github"></i><p class="list-text">GitHub</p></li></a>
+                <a href="buymeacoffee.com/OthmanKharbouch"><li><i class="bi bi-coin"></i><p class="list-text">Support</p></li></a>
+                <a href="https://otmankharbouch.live"><li><i class="bi bi-code-slash"></i><p class="list-text">Developper</p></li></a>
             </ul>
         </nav>
     </header>
     <main id="main">
-        <div class="counter">
-            <div class="inner-counter">
-                <div class="player">
-                    <p class="player-text">Wins</p>
-                    <div class="count" id="count1">0</div>
-                </div>
-                <h1>:</h1>
-                <div class="player">
-                    <p class="player-text">Loses</p>
-                    <div class="count" id="count2">0</div>
-                </div>
-            </div>
-            <button class="clear" id="resign" onclick="resign()">Resign</button>
-        </div>
         <div class="game-pad">
             <div class="case" id="1" onclick="clickCase(this)"></div>
             <div class="case" id="2" onclick="clickCase(this)"></div>
@@ -462,7 +448,7 @@
                 <button class="join-game" onclick="getInGame(this)">Join Game</button>
                 <button class="cancel-game">Cancel</button>
             </div>
-            <p>Or <a href="online.html?create" class="alt-a">Create New Game</a></p>
+            <p class="join">Or <a href="online.html?create" class="alt-a">Create New Game</a></p>
         </form>
     </div>
     <div class="show-id" id="show-id">
@@ -477,7 +463,7 @@
         <p class="info">
             When someone will join the game you will start the game, until then wait.
         </p>
-        <p>Or <a href="online.html?create" class="alt-a">Join An Existing</a></p>
+        <p class="join">Or <a href="online.html?join" class="alt-a">Join An Existing</a></p>
     </div>
     <div class="winner" id="resign-confirmation">
         <p class="pre-resign">By Resigning you will lose the game.</p>
@@ -504,30 +490,100 @@
     let player1IdLocal = '';
     let player2IdLocal = '';
 
-    function resign() {
-        let socketID = socket.id;
+    function checkWin(el) {
+        console.log(el);
+        
+    const mark = el.classList[el.classList.length - 1];
+    const row = parseInt(el.dataset.row);
+    const col = parseInt(el.dataset.col);
+    let checked = [];
 
-        socket.emit('resigned', ({ gameIdLocal, socketID }) => {
-            window.location.href = 'index.html';
-            losses++;
-            setScore();
-        });
+    function checkHorizontal() {
+        let count = 0;
+        for (let i = -4; i <= 4; i++) {
+            const c = col + i;
+            const cell = document.querySelector(`[data-row='${row}'][data-col='${c}']`);
+            if (cell && cell.classList.contains(mark)) {
+                checked.push(cell);
+                count++;
+                if (count === 5) return checked;
+            } else {
+                checked = [];
+                count = 0;
+            }
+        }
+        return false;
     }
+
+    function checkVertical() {
+        let count = 0;
+        for (let i = -4; i <= 4; i++) {
+            const r = row + i;
+            const cell = document.querySelector(`[data-row='${r}'][data-col='${col}']`);
+            if (cell && cell.classList.contains(mark)) {
+                checked.push(cell);
+                count++;
+                if (count === 5) return checked;
+            } else {
+                checked = [];
+                count = 0;
+            }
+        }
+        return false;
+    }
+
+    function checkDiagonal1() {
+        let count = 0;
+        for (let i = -4; i <= 4; i++) {
+            const r = row + i;
+            const c = col + i;
+            const cell = document.querySelector(`[data-row='${r}'][data-col='${c}']`);
+            if (cell && cell.classList.contains(mark)) {
+                checked.push(cell);
+                count++;
+                if (count === 5) return checked;
+            } else {
+                checked = [];
+                count = 0;
+            }
+        }
+        return false;
+    }
+
+    function checkDiagonal2() {
+        let count = 0;
+        for (let i = -4; i <= 4; i++) {
+            const r = row + i;
+            const c = col - i;
+            const cell = document.querySelector(`[data-row='${r}'][data-col='${c}']`);
+            if (cell && cell.classList.contains(mark)) {
+                checked.push(cell);
+                count++;
+                if (count === 5) return checked;
+            } else {
+                checked = [];
+                count = 0;
+            }
+        }
+        return false;
+    }
+
+    if (checkHorizontal() || checkVertical() || checkDiagonal1() || checkDiagonal2()) {
+        console.log('win');
+        showWin(checked);
+        return true;
+    } else {
+        console.log('no win');
+        
+        return false;
+    }
+}
+
 
     const beforeUnloadHandler = (event) => {
         const confirmationMessage = 'Are you sure you want to leave? You will lose the game if you exit.';
         event.preventDefault();
         event.returnValue = confirmationMessage;
-    };
-
-    const unloadHandler = () => {
-        let losses = parseInt(localStorage.getItem('losses')) || 0;
-        losses++;
-        localStorage.setItem('losses', losses);
-    };
-
-    const loadHandler = () => {
-        let losses = localStorage.getItem('losses') || 0;
     };
 
 function identifyAction() {
@@ -548,8 +604,6 @@ function createGame() {
     socket.emit('createGame', ({ success, gameId, playerId }) => {
         if (success) {
             window.addEventListener('beforeunload', beforeUnloadHandler);
-            window.addEventListener('unload', unloadHandler);
-            window.addEventListener('load', loadHandler);
             gameIdLocal = gameId;
             player1IdLocal = playerId;
             mark = 'x';
@@ -648,13 +702,6 @@ function clickCase(el) {
         socket.emit('playerMove', { gameIdLocal, x: el.dataset.row, y: el.dataset.col, mark: mark , win: checkWin(el)});
     }
     
-}
-
-function resigned() {
-    losses++;
-    setScore();
-    updateScore();
-    window.location.href = 'index.html';
 }
 
 function playerMoved(playerId,x,y,mark) {

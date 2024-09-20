@@ -225,44 +225,6 @@ function generateGameId() {
     return gameId;
 }
 
-function checkForWin(gameId, playerId, x, y, mark) {
-    
-}
-
-function showWins(list,gameId, playerId) {
-    let timeout = 0;
-    list.forEach(element => {
-        if (turn == 1) {
-            setTimeout(() => {
-                element.style.boxShadow = `0 0 0 20px inset rgb(255, 174, 168)`;
-                element.style.borderColor = red;
-            }, timeout);
-        } else {
-            setTimeout(() => {
-                element.style.boxShadow = `0 0 0 20px inset rgb(168, 210, 255)`;
-                element.style.borderColor = blue;
-            }, timeout);
-        }
-        timeout += 200;
-    });
-    setTimeout(() => {
-        showWinnerOnline(gameId, playerId);
-    }, timeout + 1000);
-    document.querySelectorAll('.case').forEach((el) => {
-        el.onclick = null;
-        el.style.cursor = 'default';
-    });
-}
-
-function showWinnerOnline(gameId, playerId) {
-    const query = 'UPDATE games SET status = ? WHERE game_id = ?';
-    db.query(query, ['finished', gameId], (err, result) => {
-        if (err) throw err;
-        io.to(gameId).emit('gameOver', { winnerId: playerId });
-    });
-    db
-}
-
 server.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
