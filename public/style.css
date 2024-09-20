@@ -365,6 +365,14 @@ main {
     font-weight: 400;
     height: 28px;
 }
+.alt-a {
+    color: rgb(24, 111, 203);
+    font-size: 11px;
+}
+.pre-resign {
+    color : #fff;
+    font-size: 14px;
+}
 .join-game {
     background-color: rgb(24, 111, 203);
     color: #fff;

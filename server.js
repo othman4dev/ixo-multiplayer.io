@@ -1,32 +1,72 @@
-const express = require('express');
 const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const express = require('express');
 const socketIo = require('socket.io');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
 const path = require('path');
 
-dotenv.config();
-
+const PORT_HTTP = 80;
+const PORT_HTTPS = 443;
 const app = express();
-const server = http.createServer(app);
-const io = socketIo(server);
+const PORT = 3000;
+const HOST = '0.0.0.0'; 
+
+dotenv.config({ path: '.env-online' });
+
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/tictactoe.otmankharbouch.live/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/tictactoe.otmankharbouch.live/fullchain.pem')
+};
+
+const server = https.createServer(options, app);
+
+const httpServer = http.createServer((req, res) => {
+  res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
+  res.end();
+});
+
+const httpsServer = https.createServer(options, app);
+const io = socketIo(httpsServer, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  }
+});
+
+httpServer.listen(PORT_HTTP, HOST, () => {
+  console.log(`HTTP redirect server running on http://${HOST}:${PORT_HTTP}`);
+});
+
+httpsServer.listen(PORT_HTTPS, HOST, () => {
+    console.log(`HTTPS server running on https://${HOST}:${PORT_HTTPS}`);
+  });
+
+  app.use(express.static(path.join(__dirname, 'public')));
+
+  app.get('/', (req, res) => {
+      res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
+
+  const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
+  });
+  
+  db.connect(err => {
+    if (err) throw err;
+    console.log('Database connected...');
+  });
+  
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME
-});
-
-db.connect(err => {
-    if (err) throw err;
-    console.log('Database connected...');
 });
 
 io.on('connection', (socket) => {

@@ -462,6 +462,7 @@
                 <button class="join-game" onclick="getInGame(this)">Join Game</button>
                 <button class="cancel-game">Cancel</button>
             </div>
+            <p>Or <a href="online.html?create" class="alt-a">Create New Game</a></p>
         </form>
     </div>
     <div class="show-id" id="show-id">
@@ -476,9 +477,10 @@
         <p class="info">
             When someone will join the game you will start the game, until then wait.
         </p>
+        <p>Or <a href="online.html?create" class="alt-a">Join An Existing</a></p>
     </div>
     <div class="winner" id="resign-confirmation">
-        <h2 id="winner-message">By Resigning you will lose the game.</h2>
+        <p class="pre-resign">By Resigning you will lose the game.</p>
         <div class="buttons">
             <button class="play-again danger" onclick="resigned()" id="rematch-btn">Resign</button>
             <button class="play-again cancel" onclick="this.parentNode.parentNode.style.display = 'none';">Cancel</button>
@@ -535,6 +537,8 @@ function identifyAction() {
     if (action == 'join') {
         joinGame();
     } else if (action == 'create') {
+        createGame();
+    } else {
         createGame();
     }
 }
