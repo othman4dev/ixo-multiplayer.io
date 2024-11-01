@@ -1,483 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="images/logo.webp" type="image/x-icon">
-    <script src="script.js"  defer></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="images/logo.webp" type="image/x-icon" />
+    <script src="script.js" defer></script>
     <title>ixo.io | a minimalistic x-o game</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="logo-wrapper">
-            <img src="images/logo.webp" alt="" class="logo">
-            ixo.io
-        </div>
-        <nav>
-            <ul>
-                <li><i class="bi bi-github"></i><a href="https://github.com/othman4dev/iox.io">GitHub</a></li>
-                <li><i class="bi bi-coin"></i><a href="buymeacoffee.com/OthmanKharbouch">Support</a></li>
-                <li><i class="bi bi-code-slash"></i><a href="https://otmankharbouch.live">Developper</a></li>
-            </ul>
-        </nav>
+      <div class="logo-wrapper">
+        <img src="images/logo.webp" alt="" class="logo" />
+        ixo.io
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <i class="bi bi-github"></i
+            ><a href="https://github.com/othman4dev/ixo-multiplayer.io"
+              >GitHub</a
+            >
+          </li>
+          <li>
+            <i class="bi bi-coin"></i
+            ><a href="buymeacoffee.com/OthmanKharbouch">Support</a>
+          </li>
+          <li>
+            <i class="bi bi-code-slash"></i
+            ><a href="https://otmankharbouch.live">Developper</a>
+          </li>
+        </ul>
+      </nav>
     </header>
     <main id="main">
-        <div class="counter">
-            <div class="inner-counter">
-                <div class="player">
-                    <p class="player-text">Player 1</p>
-                    <div class="count" id="count1">0</div>
-                </div>
-                <h1>:</h1>
-                <div class="player">
-                    <p class="player-text">Player 2</p>
-                    <div class="count" id="count2">0</div>
-                </div>
-            </div>
-            <button class="clear" onclick="clearCounter()">Start Over</button>
+      <div class="counter">
+        <div class="inner-counter">
+          <div class="player">
+            <p class="player-text">Player 1</p>
+            <div class="count" id="count1">0</div>
+          </div>
+          <h1>:</h1>
+          <div class="player">
+            <p class="player-text">Player 2</p>
+            <div class="count" id="count2">0</div>
+          </div>
         </div>
-        <div class="game-pad">
-            <div class="case" id="1" onclick="clickCase(this)"></div>
-            <div class="case" id="2" onclick="clickCase(this)"></div>
-            <div class="case" id="3" onclick="clickCase(this)"></div>
-            <div class="case" id="4" onclick="clickCase(this)"></div>
-            <div class="case" id="5" onclick="clickCase(this)"></div>
-            <div class="case" id="6" onclick="clickCase(this)"></div>
-            <div class="case" id="7" onclick="clickCase(this)"></div>
-            <div class="case" id="8" onclick="clickCase(this)"></div>
-            <div class="case" id="9" onclick="clickCase(this)"></div>
-            <div class="case" id="10" onclick="clickCase(this)"></div>
-            <div class="case" id="11" onclick="clickCase(this)"></div>
-            <div class="case" id="12" onclick="clickCase(this)"></div>
-            <div class="case" id="13" onclick="clickCase(this)"></div>
-            <div class="case" id="14" onclick="clickCase(this)"></div>
-            <div class="case" id="15" onclick="clickCase(this)"></div>
-            <div class="case" id="16" onclick="clickCase(this)"></div>
-            <div class="case" id="17" onclick="clickCase(this)"></div>
-            <div class="case" id="18" onclick="clickCase(this)"></div>
-            <div class="case" id="19" onclick="clickCase(this)"></div>
-            <div class="case" id="20" onclick="clickCase(this)"></div>
-            <div class="case" id="21" onclick="clickCase(this)"></div>
-            <div class="case" id="22" onclick="clickCase(this)"></div>
-            <div class="case" id="23" onclick="clickCase(this)"></div>
-            <div class="case" id="24" onclick="clickCase(this)"></div>
-            <div class="case" id="25" onclick="clickCase(this)"></div>
-            <div class="case" id="26" onclick="clickCase(this)"></div>
-            <div class="case" id="27" onclick="clickCase(this)"></div>
-            <div class="case" id="28" onclick="clickCase(this)"></div>
-            <div class="case" id="29" onclick="clickCase(this)"></div>
-            <div class="case" id="30" onclick="clickCase(this)"></div>
-            <div class="case" id="31" onclick="clickCase(this)"></div>
-            <div class="case" id="32" onclick="clickCase(this)"></div>
-            <div class="case" id="33" onclick="clickCase(this)"></div>
-            <div class="case" id="34" onclick="clickCase(this)"></div>
-            <div class="case" id="35" onclick="clickCase(this)"></div>
-            <div class="case" id="36" onclick="clickCase(this)"></div>
-            <div class="case" id="37" onclick="clickCase(this)"></div>
-            <div class="case" id="38" onclick="clickCase(this)"></div>
-            <div class="case" id="39" onclick="clickCase(this)"></div>
-            <div class="case" id="40" onclick="clickCase(this)"></div>
-            <div class="case" id="41" onclick="clickCase(this)"></div>
-            <div class="case" id="42" onclick="clickCase(this)"></div>
-            <div class="case" id="43" onclick="clickCase(this)"></div>
-            <div class="case" id="44" onclick="clickCase(this)"></div>
-            <div class="case" id="45" onclick="clickCase(this)"></div>
-            <div class="case" id="46" onclick="clickCase(this)"></div>
-            <div class="case" id="47" onclick="clickCase(this)"></div>
-            <div class="case" id="48" onclick="clickCase(this)"></div>
-            <div class="case" id="49" onclick="clickCase(this)"></div>
-            <div class="case" id="50" onclick="clickCase(this)"></div>
-            <div class="case" id="51" onclick="clickCase(this)"></div>
-            <div class="case" id="52" onclick="clickCase(this)"></div>
-            <div class="case" id="53" onclick="clickCase(this)"></div>
-            <div class="case" id="54" onclick="clickCase(this)"></div>
-            <div class="case" id="55" onclick="clickCase(this)"></div>
-            <div class="case" id="56" onclick="clickCase(this)"></div>
-            <div class="case" id="57" onclick="clickCase(this)"></div>
-            <div class="case" id="58" onclick="clickCase(this)"></div>
-            <div class="case" id="59" onclick="clickCase(this)"></div>
-            <div class="case" id="60" onclick="clickCase(this)"></div>
-            <div class="case" id="61" onclick="clickCase(this)"></div>
-            <div class="case" id="62" onclick="clickCase(this)"></div>
-            <div class="case" id="63" onclick="clickCase(this)"></div>
-            <div class="case" id="64" onclick="clickCase(this)"></div>
-            <div class="case" id="65" onclick="clickCase(this)"></div>
-            <div class="case" id="66" onclick="clickCase(this)"></div>
-            <div class="case" id="67" onclick="clickCase(this)"></div>
-            <div class="case" id="68" onclick="clickCase(this)"></div>
-            <div class="case" id="69" onclick="clickCase(this)"></div>
-            <div class="case" id="70" onclick="clickCase(this)"></div>
-            <div class="case" id="71" onclick="clickCase(this)"></div>
-            <div class="case" id="72" onclick="clickCase(this)"></div>
-            <div class="case" id="73" onclick="clickCase(this)"></div>
-            <div class="case" id="74" onclick="clickCase(this)"></div>
-            <div class="case" id="75" onclick="clickCase(this)"></div>
-            <div class="case" id="76" onclick="clickCase(this)"></div>
-            <div class="case" id="77" onclick="clickCase(this)"></div>
-            <div class="case" id="78" onclick="clickCase(this)"></div>
-            <div class="case" id="79" onclick="clickCase(this)"></div>
-            <div class="case" id="80" onclick="clickCase(this)"></div>
-            <div class="case" id="81" onclick="clickCase(this)"></div>
-            <div class="case" id="82" onclick="clickCase(this)"></div>
-            <div class="case" id="83" onclick="clickCase(this)"></div>
-            <div class="case" id="84" onclick="clickCase(this)"></div>
-            <div class="case" id="85" onclick="clickCase(this)"></div>
-            <div class="case" id="86" onclick="clickCase(this)"></div>
-            <div class="case" id="87" onclick="clickCase(this)"></div>
-            <div class="case" id="88" onclick="clickCase(this)"></div>
-            <div class="case" id="89" onclick="clickCase(this)"></div>
-            <div class="case" id="90" onclick="clickCase(this)"></div>
-            <div class="case" id="91" onclick="clickCase(this)"></div>
-            <div class="case" id="92" onclick="clickCase(this)"></div>
-            <div class="case" id="93" onclick="clickCase(this)"></div>
-            <div class="case" id="94" onclick="clickCase(this)"></div>
-            <div class="case" id="95" onclick="clickCase(this)"></div>
-            <div class="case" id="96" onclick="clickCase(this)"></div>
-            <div class="case" id="97" onclick="clickCase(this)"></div>
-            <div class="case" id="98" onclick="clickCase(this)"></div>
-            <div class="case" id="99" onclick="clickCase(this)"></div>
-            <div class="case" id="100" onclick="clickCase(this)"></div>
-            <div class="case" id="101" onclick="clickCase(this)"></div>
-            <div class="case" id="102" onclick="clickCase(this)"></div>
-            <div class="case" id="103" onclick="clickCase(this)"></div>
-            <div class="case" id="104" onclick="clickCase(this)"></div>
-            <div class="case" id="105" onclick="clickCase(this)"></div>
-            <div class="case" id="106" onclick="clickCase(this)"></div>
-            <div class="case" id="107" onclick="clickCase(this)"></div>
-            <div class="case" id="108" onclick="clickCase(this)"></div>
-            <div class="case" id="109" onclick="clickCase(this)"></div>
-            <div class="case" id="110" onclick="clickCase(this)"></div>
-            <div class="case" id="111" onclick="clickCase(this)"></div>
-            <div class="case" id="112" onclick="clickCase(this)"></div>
-            <div class="case" id="113" onclick="clickCase(this)"></div>
-            <div class="case" id="114" onclick="clickCase(this)"></div>
-            <div class="case" id="115" onclick="clickCase(this)"></div>
-            <div class="case" id="116" onclick="clickCase(this)"></div>
-            <div class="case" id="117" onclick="clickCase(this)"></div>
-            <div class="case" id="118" onclick="clickCase(this)"></div>
-            <div class="case" id="119" onclick="clickCase(this)"></div>
-            <div class="case" id="120" onclick="clickCase(this)"></div>
-            <div class="case" id="121" onclick="clickCase(this)"></div>
-            <div class="case" id="122" onclick="clickCase(this)"></div>
-            <div class="case" id="123" onclick="clickCase(this)"></div>
-            <div class="case" id="124" onclick="clickCase(this)"></div>
-            <div class="case" id="125" onclick="clickCase(this)"></div>
-            <div class="case" id="126" onclick="clickCase(this)"></div>
-            <div class="case" id="127" onclick="clickCase(this)"></div>
-            <div class="case" id="128" onclick="clickCase(this)"></div>
-            <div class="case" id="129" onclick="clickCase(this)"></div>
-            <div class="case" id="130" onclick="clickCase(this)"></div>
-            <div class="case" id="131" onclick="clickCase(this)"></div>
-            <div class="case" id="132" onclick="clickCase(this)"></div>
-            <div class="case" id="133" onclick="clickCase(this)"></div>
-            <div class="case" id="134" onclick="clickCase(this)"></div>
-            <div class="case" id="135" onclick="clickCase(this)"></div>
-            <div class="case" id="136" onclick="clickCase(this)"></div>
-            <div class="case" id="137" onclick="clickCase(this)"></div>
-            <div class="case" id="138" onclick="clickCase(this)"></div>
-            <div class="case" id="139" onclick="clickCase(this)"></div>
-            <div class="case" id="140" onclick="clickCase(this)"></div>
-            <div class="case" id="141" onclick="clickCase(this)"></div>
-            <div class="case" id="142" onclick="clickCase(this)"></div>
-            <div class="case" id="143" onclick="clickCase(this)"></div>
-            <div class="case" id="144" onclick="clickCase(this)"></div>
-            <div class="case" id="145" onclick="clickCase(this)"></div>
-            <div class="case" id="146" onclick="clickCase(this)"></div>
-            <div class="case" id="147" onclick="clickCase(this)"></div>
-            <div class="case" id="148" onclick="clickCase(this)"></div>
-            <div class="case" id="149" onclick="clickCase(this)"></div>
-            <div class="case" id="150" onclick="clickCase(this)"></div>
-            <div class="case" id="151" onclick="clickCase(this)"></div>
-            <div class="case" id="152" onclick="clickCase(this)"></div>
-            <div class="case" id="153" onclick="clickCase(this)"></div>
-            <div class="case" id="154" onclick="clickCase(this)"></div>
-            <div class="case" id="155" onclick="clickCase(this)"></div>
-            <div class="case" id="156" onclick="clickCase(this)"></div>
-            <div class="case" id="157" onclick="clickCase(this)"></div>
-            <div class="case" id="158" onclick="clickCase(this)"></div>
-            <div class="case" id="159" onclick="clickCase(this)"></div>
-            <div class="case" id="160" onclick="clickCase(this)"></div>
-            <div class="case" id="161" onclick="clickCase(this)"></div>
-            <div class="case" id="162" onclick="clickCase(this)"></div>
-            <div class="case" id="163" onclick="clickCase(this)"></div>
-            <div class="case" id="164" onclick="clickCase(this)"></div>
-            <div class="case" id="165" onclick="clickCase(this)"></div>
-            <div class="case" id="166" onclick="clickCase(this)"></div>
-            <div class="case" id="167" onclick="clickCase(this)"></div>
-            <div class="case" id="168" onclick="clickCase(this)"></div>
-            <div class="case" id="169" onclick="clickCase(this)"></div>
-            <div class="case" id="170" onclick="clickCase(this)"></div>
-            <div class="case" id="171" onclick="clickCase(this)"></div>
-            <div class="case" id="172" onclick="clickCase(this)"></div>
-            <div class="case" id="173" onclick="clickCase(this)"></div>
-            <div class="case" id="174" onclick="clickCase(this)"></div>
-            <div class="case" id="175" onclick="clickCase(this)"></div>
-            <div class="case" id="176" onclick="clickCase(this)"></div>
-            <div class="case" id="177" onclick="clickCase(this)"></div>
-            <div class="case" id="178" onclick="clickCase(this)"></div>
-            <div class="case" id="179" onclick="clickCase(this)"></div>
-            <div class="case" id="180" onclick="clickCase(this)"></div>
-            <div class="case" id="181" onclick="clickCase(this)"></div>
-            <div class="case" id="182" onclick="clickCase(this)"></div>
-            <div class="case" id="183" onclick="clickCase(this)"></div>
-            <div class="case" id="184" onclick="clickCase(this)"></div>
-            <div class="case" id="185" onclick="clickCase(this)"></div>
-            <div class="case" id="186" onclick="clickCase(this)"></div>
-            <div class="case" id="187" onclick="clickCase(this)"></div>
-            <div class="case" id="188" onclick="clickCase(this)"></div>
-            <div class="case" id="189" onclick="clickCase(this)"></div>
-            <div class="case" id="190" onclick="clickCase(this)"></div>
-            <div class="case" id="191" onclick="clickCase(this)"></div>
-            <div class="case" id="192" onclick="clickCase(this)"></div>
-            <div class="case" id="193" onclick="clickCase(this)"></div>
-            <div class="case" id="194" onclick="clickCase(this)"></div>
-            <div class="case" id="195" onclick="clickCase(this)"></div>
-            <div class="case" id="196" onclick="clickCase(this)"></div>
-            <div class="case" id="197" onclick="clickCase(this)"></div>
-            <div class="case" id="198" onclick="clickCase(this)"></div>
-            <div class="case" id="199" onclick="clickCase(this)"></div>
-            <div class="case" id="200" onclick="clickCase(this)"></div>
-            <div class="case" id="201" onclick="clickCase(this)"></div>
-            <div class="case" id="202" onclick="clickCase(this)"></div>
-            <div class="case" id="203" onclick="clickCase(this)"></div>
-            <div class="case" id="204" onclick="clickCase(this)"></div>
-            <div class="case" id="205" onclick="clickCase(this)"></div>
-            <div class="case" id="206" onclick="clickCase(this)"></div>
-            <div class="case" id="207" onclick="clickCase(this)"></div>
-            <div class="case" id="208" onclick="clickCase(this)"></div>
-            <div class="case" id="209" onclick="clickCase(this)"></div>
-            <div class="case" id="210" onclick="clickCase(this)"></div>
-            <div class="case" id="211" onclick="clickCase(this)"></div>
-            <div class="case" id="212" onclick="clickCase(this)"></div>
-            <div class="case" id="213" onclick="clickCase(this)"></div>
-            <div class="case" id="214" onclick="clickCase(this)"></div>
-            <div class="case" id="215" onclick="clickCase(this)"></div>
-            <div class="case" id="216" onclick="clickCase(this)"></div>
-            <div class="case" id="217" onclick="clickCase(this)"></div>
-            <div class="case" id="218" onclick="clickCase(this)"></div>
-            <div class="case" id="219" onclick="clickCase(this)"></div>
-            <div class="case" id="220" onclick="clickCase(this)"></div>
-            <div class="case" id="221" onclick="clickCase(this)"></div>
-            <div class="case" id="222" onclick="clickCase(this)"></div>
-            <div class="case" id="223" onclick="clickCase(this)"></div>
-            <div class="case" id="224" onclick="clickCase(this)"></div>
-            <div class="case" id="225" onclick="clickCase(this)"></div>
-            <div class="case" id="226" onclick="clickCase(this)"></div>
-            <div class="case" id="227" onclick="clickCase(this)"></div>
-            <div class="case" id="228" onclick="clickCase(this)"></div>
-            <div class="case" id="229" onclick="clickCase(this)"></div>
-            <div class="case" id="230" onclick="clickCase(this)"></div>
-            <div class="case" id="231" onclick="clickCase(this)"></div>
-            <div class="case" id="232" onclick="clickCase(this)"></div>
-            <div class="case" id="233" onclick="clickCase(this)"></div>
-            <div class="case" id="234" onclick="clickCase(this)"></div>
-            <div class="case" id="235" onclick="clickCase(this)"></div>
-            <div class="case" id="236" onclick="clickCase(this)"></div>
-            <div class="case" id="237" onclick="clickCase(this)"></div>
-            <div class="case" id="238" onclick="clickCase(this)"></div>
-            <div class="case" id="239" onclick="clickCase(this)"></div>
-            <div class="case" id="240" onclick="clickCase(this)"></div>
-            <div class="case" id="241" onclick="clickCase(this)"></div>
-            <div class="case" id="242" onclick="clickCase(this)"></div>
-            <div class="case" id="243" onclick="clickCase(this)"></div>
-            <div class="case" id="244" onclick="clickCase(this)"></div>
-            <div class="case" id="245" onclick="clickCase(this)"></div>
-            <div class="case" id="246" onclick="clickCase(this)"></div>
-            <div class="case" id="247" onclick="clickCase(this)"></div>
-            <div class="case" id="248" onclick="clickCase(this)"></div>
-            <div class="case" id="249" onclick="clickCase(this)"></div>
-            <div class="case" id="250" onclick="clickCase(this)"></div>
-            <div class="case" id="251" onclick="clickCase(this)"></div>
-            <div class="case" id="252" onclick="clickCase(this)"></div>
-            <div class="case" id="253" onclick="clickCase(this)"></div>
-            <div class="case" id="254" onclick="clickCase(this)"></div>
-            <div class="case" id="255" onclick="clickCase(this)"></div>
-            <div class="case" id="256" onclick="clickCase(this)"></div>
-            <div class="case" id="257" onclick="clickCase(this)"></div>
-            <div class="case" id="258" onclick="clickCase(this)"></div>
-            <div class="case" id="259" onclick="clickCase(this)"></div>
-            <div class="case" id="260" onclick="clickCase(this)"></div>
-            <div class="case" id="261" onclick="clickCase(this)"></div>
-            <div class="case" id="262" onclick="clickCase(this)"></div>
-            <div class="case" id="263" onclick="clickCase(this)"></div>
-            <div class="case" id="264" onclick="clickCase(this)"></div>
-            <div class="case" id="265" onclick="clickCase(this)"></div>
-            <div class="case" id="266" onclick="clickCase(this)"></div>
-            <div class="case" id="267" onclick="clickCase(this)"></div>
-            <div class="case" id="268" onclick="clickCase(this)"></div>
-            <div class="case" id="269" onclick="clickCase(this)"></div>
-            <div class="case" id="270" onclick="clickCase(this)"></div>
-            <div class="case" id="271" onclick="clickCase(this)"></div>
-            <div class="case" id="272" onclick="clickCase(this)"></div>
-            <div class="case" id="273" onclick="clickCase(this)"></div>
-            <div class="case" id="274" onclick="clickCase(this)"></div>
-            <div class="case" id="275" onclick="clickCase(this)"></div>
-            <div class="case" id="276" onclick="clickCase(this)"></div>
-            <div class="case" id="277" onclick="clickCase(this)"></div>
-            <div class="case" id="278" onclick="clickCase(this)"></div>
-            <div class="case" id="279" onclick="clickCase(this)"></div>
-            <div class="case" id="280" onclick="clickCase(this)"></div>
-            <div class="case" id="281" onclick="clickCase(this)"></div>
-            <div class="case" id="282" onclick="clickCase(this)"></div>
-            <div class="case" id="283" onclick="clickCase(this)"></div>
-            <div class="case" id="284" onclick="clickCase(this)"></div>
-            <div class="case" id="285" onclick="clickCase(this)"></div>
-            <div class="case" id="286" onclick="clickCase(this)"></div>
-            <div class="case" id="287" onclick="clickCase(this)"></div>
-            <div class="case" id="288" onclick="clickCase(this)"></div>
-            <div class="case" id="289" onclick="clickCase(this)"></div>
-            <div class="case" id="290" onclick="clickCase(this)"></div>
-            <div class="case" id="291" onclick="clickCase(this)"></div>
-            <div class="case" id="292" onclick="clickCase(this)"></div>
-            <div class="case" id="293" onclick="clickCase(this)"></div>
-            <div class="case" id="294" onclick="clickCase(this)"></div>
-            <div class="case" id="295" onclick="clickCase(this)"></div>
-            <div class="case" id="296" onclick="clickCase(this)"></div>
-            <div class="case" id="297" onclick="clickCase(this)"></div>
-            <div class="case" id="298" onclick="clickCase(this)"></div>
-            <div class="case" id="299" onclick="clickCase(this)"></div>
-            <div class="case" id="300" onclick="clickCase(this)"></div>
-            <div class="case" id="301" onclick="clickCase(this)"></div>
-            <div class="case" id="302" onclick="clickCase(this)"></div>
-            <div class="case" id="303" onclick="clickCase(this)"></div>
-            <div class="case" id="304" onclick="clickCase(this)"></div>
-            <div class="case" id="305" onclick="clickCase(this)"></div>
-            <div class="case" id="306" onclick="clickCase(this)"></div>
-            <div class="case" id="307" onclick="clickCase(this)"></div>
-            <div class="case" id="308" onclick="clickCase(this)"></div>
-            <div class="case" id="309" onclick="clickCase(this)"></div>
-            <div class="case" id="310" onclick="clickCase(this)"></div>
-            <div class="case" id="311" onclick="clickCase(this)"></div>
-            <div class="case" id="312" onclick="clickCase(this)"></div>
-            <div class="case" id="313" onclick="clickCase(this)"></div>
-            <div class="case" id="314" onclick="clickCase(this)"></div>
-            <div class="case" id="315" onclick="clickCase(this)"></div>
-            <div class="case" id="316" onclick="clickCase(this)"></div>
-            <div class="case" id="317" onclick="clickCase(this)"></div>
-            <div class="case" id="318" onclick="clickCase(this)"></div>
-            <div class="case" id="319" onclick="clickCase(this)"></div>
-            <div class="case" id="320" onclick="clickCase(this)"></div>
-            <div class="case" id="321" onclick="clickCase(this)"></div>
-            <div class="case" id="322" onclick="clickCase(this)"></div>
-            <div class="case" id="323" onclick="clickCase(this)"></div>
-            <div class="case" id="324" onclick="clickCase(this)"></div>
-            <div class="case" id="325" onclick="clickCase(this)"></div>
-            <div class="case" id="326" onclick="clickCase(this)"></div>
-            <div class="case" id="327" onclick="clickCase(this)"></div>
-            <div class="case" id="328" onclick="clickCase(this)"></div>
-            <div class="case" id="329" onclick="clickCase(this)"></div>
-            <div class="case" id="330" onclick="clickCase(this)"></div>
-            <div class="case" id="331" onclick="clickCase(this)"></div>
-            <div class="case" id="332" onclick="clickCase(this)"></div>
-            <div class="case" id="333" onclick="clickCase(this)"></div>
-            <div class="case" id="334" onclick="clickCase(this)"></div>
-            <div class="case" id="335" onclick="clickCase(this)"></div>
-            <div class="case" id="336" onclick="clickCase(this)"></div>
-            <div class="case" id="337" onclick="clickCase(this)"></div>
-            <div class="case" id="338" onclick="clickCase(this)"></div>
-            <div class="case" id="339" onclick="clickCase(this)"></div>
-            <div class="case" id="340" onclick="clickCase(this)"></div>
-            <div class="case" id="341" onclick="clickCase(this)"></div>
-            <div class="case" id="342" onclick="clickCase(this)"></div>
-            <div class="case" id="343" onclick="clickCase(this)"></div>
-            <div class="case" id="344" onclick="clickCase(this)"></div>
-            <div class="case" id="345" onclick="clickCase(this)"></div>
-            <div class="case" id="346" onclick="clickCase(this)"></div>
-            <div class="case" id="347" onclick="clickCase(this)"></div>
-            <div class="case" id="348" onclick="clickCase(this)"></div>
-            <div class="case" id="349" onclick="clickCase(this)"></div>
-            <div class="case" id="350" onclick="clickCase(this)"></div>
-            <div class="case" id="351" onclick="clickCase(this)"></div>
-            <div class="case" id="352" onclick="clickCase(this)"></div>
-            <div class="case" id="353" onclick="clickCase(this)"></div>
-            <div class="case" id="354" onclick="clickCase(this)"></div>
-            <div class="case" id="355" onclick="clickCase(this)"></div>
-            <div class="case" id="356" onclick="clickCase(this)"></div>
-            <div class="case" id="357" onclick="clickCase(this)"></div>
-            <div class="case" id="358" onclick="clickCase(this)"></div>
-            <div class="case" id="359" onclick="clickCase(this)"></div>
-            <div class="case" id="360" onclick="clickCase(this)"></div>
-            <div class="case" id="361" onclick="clickCase(this)"></div>
-            <div class="case" id="362" onclick="clickCase(this)"></div>
-            <div class="case" id="363" onclick="clickCase(this)"></div>
-            <div class="case" id="364" onclick="clickCase(this)"></div>
-            <div class="case" id="365" onclick="clickCase(this)"></div>
-            <div class="case" id="366" onclick="clickCase(this)"></div>
-            <div class="case" id="367" onclick="clickCase(this)"></div>
-            <div class="case" id="368" onclick="clickCase(this)"></div>
-            <div class="case" id="369" onclick="clickCase(this)"></div>
-            <div class="case" id="370" onclick="clickCase(this)"></div>
-            <div class="case" id="371" onclick="clickCase(this)"></div>
-            <div class="case" id="372" onclick="clickCase(this)"></div>
-            <div class="case" id="373" onclick="clickCase(this)"></div>
-            <div class="case" id="374" onclick="clickCase(this)"></div>
-            <div class="case" id="375" onclick="clickCase(this)"></div>
-            <div class="case" id="376" onclick="clickCase(this)"></div>
-            <div class="case" id="377" onclick="clickCase(this)"></div>
-            <div class="case" id="378" onclick="clickCase(this)"></div>
-            <div class="case" id="379" onclick="clickCase(this)"></div>
-            <div class="case" id="380" onclick="clickCase(this)"></div>
-            <div class="case" id="381" onclick="clickCase(this)"></div>
-            <div class="case" id="382" onclick="clickCase(this)"></div>
-            <div class="case" id="383" onclick="clickCase(this)"></div>
-            <div class="case" id="384" onclick="clickCase(this)"></div>
-            <div class="case" id="385" onclick="clickCase(this)"></div>
-            <div class="case" id="386" onclick="clickCase(this)"></div>
-            <div class="case" id="387" onclick="clickCase(this)"></div>
-            <div class="case" id="388" onclick="clickCase(this)"></div>
-            <div class="case" id="389" onclick="clickCase(this)"></div>
-            <div class="case" id="390" onclick="clickCase(this)"></div>
-            <div class="case" id="391" onclick="clickCase(this)"></div>
-            <div class="case" id="392" onclick="clickCase(this)"></div>
-            <div class="case" id="393" onclick="clickCase(this)"></div>
-            <div class="case" id="394" onclick="clickCase(this)"></div>
-            <div class="case" id="395" onclick="clickCase(this)"></div>
-            <div class="case" id="396" onclick="clickCase(this)"></div>
-            <div class="case" id="397" onclick="clickCase(this)"></div>
-            <div class="case" id="398" onclick="clickCase(this)"></div>
-            <div class="case" id="399" onclick="clickCase(this)"></div>
-            <div class="case" id="400" onclick="clickCase(this)"></div>
-        </div>
+        <button class="clear" onclick="clearCounter()">Start Over</button>
+      </div>
+      <div class="game-pad">
+        <div class="case" id="1" onclick="clickCase(this)"></div>
+        <div class="case" id="2" onclick="clickCase(this)"></div>
+        <div class="case" id="3" onclick="clickCase(this)"></div>
+        <div class="case" id="4" onclick="clickCase(this)"></div>
+        <div class="case" id="5" onclick="clickCase(this)"></div>
+        <div class="case" id="6" onclick="clickCase(this)"></div>
+        <div class="case" id="7" onclick="clickCase(this)"></div>
+        <div class="case" id="8" onclick="clickCase(this)"></div>
+        <div class="case" id="9" onclick="clickCase(this)"></div>
+        <div class="case" id="10" onclick="clickCase(this)"></div>
+        <div class="case" id="11" onclick="clickCase(this)"></div>
+        <div class="case" id="12" onclick="clickCase(this)"></div>
+        <div class="case" id="13" onclick="clickCase(this)"></div>
+        <div class="case" id="14" onclick="clickCase(this)"></div>
+        <div class="case" id="15" onclick="clickCase(this)"></div>
+        <div class="case" id="16" onclick="clickCase(this)"></div>
+        <div class="case" id="17" onclick="clickCase(this)"></div>
+        <div class="case" id="18" onclick="clickCase(this)"></div>
+        <div class="case" id="19" onclick="clickCase(this)"></div>
+        <div class="case" id="20" onclick="clickCase(this)"></div>
+        <div class="case" id="21" onclick="clickCase(this)"></div>
+        <div class="case" id="22" onclick="clickCase(this)"></div>
+        <div class="case" id="23" onclick="clickCase(this)"></div>
+        <div class="case" id="24" onclick="clickCase(this)"></div>
+        <div class="case" id="25" onclick="clickCase(this)"></div>
+        <div class="case" id="26" onclick="clickCase(this)"></div>
+        <div class="case" id="27" onclick="clickCase(this)"></div>
+        <div class="case" id="28" onclick="clickCase(this)"></div>
+        <div class="case" id="29" onclick="clickCase(this)"></div>
+        <div class="case" id="30" onclick="clickCase(this)"></div>
+        <div class="case" id="31" onclick="clickCase(this)"></div>
+        <div class="case" id="32" onclick="clickCase(this)"></div>
+        <div class="case" id="33" onclick="clickCase(this)"></div>
+        <div class="case" id="34" onclick="clickCase(this)"></div>
+        <div class="case" id="35" onclick="clickCase(this)"></div>
+        <div class="case" id="36" onclick="clickCase(this)"></div>
+        <div class="case" id="37" onclick="clickCase(this)"></div>
+        <div class="case" id="38" onclick="clickCase(this)"></div>
+        <div class="case" id="39" onclick="clickCase(this)"></div>
+        <div class="case" id="40" onclick="clickCase(this)"></div>
+        <div class="case" id="41" onclick="clickCase(this)"></div>
+        <div class="case" id="42" onclick="clickCase(this)"></div>
+        <div class="case" id="43" onclick="clickCase(this)"></div>
+        <div class="case" id="44" onclick="clickCase(this)"></div>
+        <div class="case" id="45" onclick="clickCase(this)"></div>
+        <div class="case" id="46" onclick="clickCase(this)"></div>
+        <div class="case" id="47" onclick="clickCase(this)"></div>
+        <div class="case" id="48" onclick="clickCase(this)"></div>
+        <div class="case" id="49" onclick="clickCase(this)"></div>
+        <div class="case" id="50" onclick="clickCase(this)"></div>
+        <div class="case" id="51" onclick="clickCase(this)"></div>
+        <div class="case" id="52" onclick="clickCase(this)"></div>
+        <div class="case" id="53" onclick="clickCase(this)"></div>
+        <div class="case" id="54" onclick="clickCase(this)"></div>
+        <div class="case" id="55" onclick="clickCase(this)"></div>
+        <div class="case" id="56" onclick="clickCase(this)"></div>
+        <div class="case" id="57" onclick="clickCase(this)"></div>
+        <div class="case" id="58" onclick="clickCase(this)"></div>
+        <div class="case" id="59" onclick="clickCase(this)"></div>
+        <div class="case" id="60" onclick="clickCase(this)"></div>
+        <div class="case" id="61" onclick="clickCase(this)"></div>
+        <div class="case" id="62" onclick="clickCase(this)"></div>
+        <div class="case" id="63" onclick="clickCase(this)"></div>
+        <div class="case" id="64" onclick="clickCase(this)"></div>
+        <div class="case" id="65" onclick="clickCase(this)"></div>
+        <div class="case" id="66" onclick="clickCase(this)"></div>
+        <div class="case" id="67" onclick="clickCase(this)"></div>
+        <div class="case" id="68" onclick="clickCase(this)"></div>
+        <div class="case" id="69" onclick="clickCase(this)"></div>
+        <div class="case" id="70" onclick="clickCase(this)"></div>
+        <div class="case" id="71" onclick="clickCase(this)"></div>
+        <div class="case" id="72" onclick="clickCase(this)"></div>
+        <div class="case" id="73" onclick="clickCase(this)"></div>
+        <div class="case" id="74" onclick="clickCase(this)"></div>
+        <div class="case" id="75" onclick="clickCase(this)"></div>
+        <div class="case" id="76" onclick="clickCase(this)"></div>
+        <div class="case" id="77" onclick="clickCase(this)"></div>
+        <div class="case" id="78" onclick="clickCase(this)"></div>
+        <div class="case" id="79" onclick="clickCase(this)"></div>
+        <div class="case" id="80" onclick="clickCase(this)"></div>
+        <div class="case" id="81" onclick="clickCase(this)"></div>
+        <div class="case" id="82" onclick="clickCase(this)"></div>
+        <div class="case" id="83" onclick="clickCase(this)"></div>
+        <div class="case" id="84" onclick="clickCase(this)"></div>
+        <div class="case" id="85" onclick="clickCase(this)"></div>
+        <div class="case" id="86" onclick="clickCase(this)"></div>
+        <div class="case" id="87" onclick="clickCase(this)"></div>
+        <div class="case" id="88" onclick="clickCase(this)"></div>
+        <div class="case" id="89" onclick="clickCase(this)"></div>
+        <div class="case" id="90" onclick="clickCase(this)"></div>
+        <div class="case" id="91" onclick="clickCase(this)"></div>
+        <div class="case" id="92" onclick="clickCase(this)"></div>
+        <div class="case" id="93" onclick="clickCase(this)"></div>
+        <div class="case" id="94" onclick="clickCase(this)"></div>
+        <div class="case" id="95" onclick="clickCase(this)"></div>
+        <div class="case" id="96" onclick="clickCase(this)"></div>
+        <div class="case" id="97" onclick="clickCase(this)"></div>
+        <div class="case" id="98" onclick="clickCase(this)"></div>
+        <div class="case" id="99" onclick="clickCase(this)"></div>
+        <div class="case" id="100" onclick="clickCase(this)"></div>
+        <div class="case" id="101" onclick="clickCase(this)"></div>
+        <div class="case" id="102" onclick="clickCase(this)"></div>
+        <div class="case" id="103" onclick="clickCase(this)"></div>
+        <div class="case" id="104" onclick="clickCase(this)"></div>
+        <div class="case" id="105" onclick="clickCase(this)"></div>
+        <div class="case" id="106" onclick="clickCase(this)"></div>
+        <div class="case" id="107" onclick="clickCase(this)"></div>
+        <div class="case" id="108" onclick="clickCase(this)"></div>
+        <div class="case" id="109" onclick="clickCase(this)"></div>
+        <div class="case" id="110" onclick="clickCase(this)"></div>
+        <div class="case" id="111" onclick="clickCase(this)"></div>
+        <div class="case" id="112" onclick="clickCase(this)"></div>
+        <div class="case" id="113" onclick="clickCase(this)"></div>
+        <div class="case" id="114" onclick="clickCase(this)"></div>
+        <div class="case" id="115" onclick="clickCase(this)"></div>
+        <div class="case" id="116" onclick="clickCase(this)"></div>
+        <div class="case" id="117" onclick="clickCase(this)"></div>
+        <div class="case" id="118" onclick="clickCase(this)"></div>
+        <div class="case" id="119" onclick="clickCase(this)"></div>
+        <div class="case" id="120" onclick="clickCase(this)"></div>
+        <div class="case" id="121" onclick="clickCase(this)"></div>
+        <div class="case" id="122" onclick="clickCase(this)"></div>
+        <div class="case" id="123" onclick="clickCase(this)"></div>
+        <div class="case" id="124" onclick="clickCase(this)"></div>
+        <div class="case" id="125" onclick="clickCase(this)"></div>
+        <div class="case" id="126" onclick="clickCase(this)"></div>
+        <div class="case" id="127" onclick="clickCase(this)"></div>
+        <div class="case" id="128" onclick="clickCase(this)"></div>
+        <div class="case" id="129" onclick="clickCase(this)"></div>
+        <div class="case" id="130" onclick="clickCase(this)"></div>
+        <div class="case" id="131" onclick="clickCase(this)"></div>
+        <div class="case" id="132" onclick="clickCase(this)"></div>
+        <div class="case" id="133" onclick="clickCase(this)"></div>
+        <div class="case" id="134" onclick="clickCase(this)"></div>
+        <div class="case" id="135" onclick="clickCase(this)"></div>
+        <div class="case" id="136" onclick="clickCase(this)"></div>
+        <div class="case" id="137" onclick="clickCase(this)"></div>
+        <div class="case" id="138" onclick="clickCase(this)"></div>
+        <div class="case" id="139" onclick="clickCase(this)"></div>
+        <div class="case" id="140" onclick="clickCase(this)"></div>
+        <div class="case" id="141" onclick="clickCase(this)"></div>
+        <div class="case" id="142" onclick="clickCase(this)"></div>
+        <div class="case" id="143" onclick="clickCase(this)"></div>
+        <div class="case" id="144" onclick="clickCase(this)"></div>
+        <div class="case" id="145" onclick="clickCase(this)"></div>
+        <div class="case" id="146" onclick="clickCase(this)"></div>
+        <div class="case" id="147" onclick="clickCase(this)"></div>
+        <div class="case" id="148" onclick="clickCase(this)"></div>
+        <div class="case" id="149" onclick="clickCase(this)"></div>
+        <div class="case" id="150" onclick="clickCase(this)"></div>
+        <div class="case" id="151" onclick="clickCase(this)"></div>
+        <div class="case" id="152" onclick="clickCase(this)"></div>
+        <div class="case" id="153" onclick="clickCase(this)"></div>
+        <div class="case" id="154" onclick="clickCase(this)"></div>
+        <div class="case" id="155" onclick="clickCase(this)"></div>
+        <div class="case" id="156" onclick="clickCase(this)"></div>
+        <div class="case" id="157" onclick="clickCase(this)"></div>
+        <div class="case" id="158" onclick="clickCase(this)"></div>
+        <div class="case" id="159" onclick="clickCase(this)"></div>
+        <div class="case" id="160" onclick="clickCase(this)"></div>
+        <div class="case" id="161" onclick="clickCase(this)"></div>
+        <div class="case" id="162" onclick="clickCase(this)"></div>
+        <div class="case" id="163" onclick="clickCase(this)"></div>
+        <div class="case" id="164" onclick="clickCase(this)"></div>
+        <div class="case" id="165" onclick="clickCase(this)"></div>
+        <div class="case" id="166" onclick="clickCase(this)"></div>
+        <div class="case" id="167" onclick="clickCase(this)"></div>
+        <div class="case" id="168" onclick="clickCase(this)"></div>
+        <div class="case" id="169" onclick="clickCase(this)"></div>
+        <div class="case" id="170" onclick="clickCase(this)"></div>
+        <div class="case" id="171" onclick="clickCase(this)"></div>
+        <div class="case" id="172" onclick="clickCase(this)"></div>
+        <div class="case" id="173" onclick="clickCase(this)"></div>
+        <div class="case" id="174" onclick="clickCase(this)"></div>
+        <div class="case" id="175" onclick="clickCase(this)"></div>
+        <div class="case" id="176" onclick="clickCase(this)"></div>
+        <div class="case" id="177" onclick="clickCase(this)"></div>
+        <div class="case" id="178" onclick="clickCase(this)"></div>
+        <div class="case" id="179" onclick="clickCase(this)"></div>
+        <div class="case" id="180" onclick="clickCase(this)"></div>
+        <div class="case" id="181" onclick="clickCase(this)"></div>
+        <div class="case" id="182" onclick="clickCase(this)"></div>
+        <div class="case" id="183" onclick="clickCase(this)"></div>
+        <div class="case" id="184" onclick="clickCase(this)"></div>
+        <div class="case" id="185" onclick="clickCase(this)"></div>
+        <div class="case" id="186" onclick="clickCase(this)"></div>
+        <div class="case" id="187" onclick="clickCase(this)"></div>
+        <div class="case" id="188" onclick="clickCase(this)"></div>
+        <div class="case" id="189" onclick="clickCase(this)"></div>
+        <div class="case" id="190" onclick="clickCase(this)"></div>
+        <div class="case" id="191" onclick="clickCase(this)"></div>
+        <div class="case" id="192" onclick="clickCase(this)"></div>
+        <div class="case" id="193" onclick="clickCase(this)"></div>
+        <div class="case" id="194" onclick="clickCase(this)"></div>
+        <div class="case" id="195" onclick="clickCase(this)"></div>
+        <div class="case" id="196" onclick="clickCase(this)"></div>
+        <div class="case" id="197" onclick="clickCase(this)"></div>
+        <div class="case" id="198" onclick="clickCase(this)"></div>
+        <div class="case" id="199" onclick="clickCase(this)"></div>
+        <div class="case" id="200" onclick="clickCase(this)"></div>
+        <div class="case" id="201" onclick="clickCase(this)"></div>
+        <div class="case" id="202" onclick="clickCase(this)"></div>
+        <div class="case" id="203" onclick="clickCase(this)"></div>
+        <div class="case" id="204" onclick="clickCase(this)"></div>
+        <div class="case" id="205" onclick="clickCase(this)"></div>
+        <div class="case" id="206" onclick="clickCase(this)"></div>
+        <div class="case" id="207" onclick="clickCase(this)"></div>
+        <div class="case" id="208" onclick="clickCase(this)"></div>
+        <div class="case" id="209" onclick="clickCase(this)"></div>
+        <div class="case" id="210" onclick="clickCase(this)"></div>
+        <div class="case" id="211" onclick="clickCase(this)"></div>
+        <div class="case" id="212" onclick="clickCase(this)"></div>
+        <div class="case" id="213" onclick="clickCase(this)"></div>
+        <div class="case" id="214" onclick="clickCase(this)"></div>
+        <div class="case" id="215" onclick="clickCase(this)"></div>
+        <div class="case" id="216" onclick="clickCase(this)"></div>
+        <div class="case" id="217" onclick="clickCase(this)"></div>
+        <div class="case" id="218" onclick="clickCase(this)"></div>
+        <div class="case" id="219" onclick="clickCase(this)"></div>
+        <div class="case" id="220" onclick="clickCase(this)"></div>
+        <div class="case" id="221" onclick="clickCase(this)"></div>
+        <div class="case" id="222" onclick="clickCase(this)"></div>
+        <div class="case" id="223" onclick="clickCase(this)"></div>
+        <div class="case" id="224" onclick="clickCase(this)"></div>
+        <div class="case" id="225" onclick="clickCase(this)"></div>
+        <div class="case" id="226" onclick="clickCase(this)"></div>
+        <div class="case" id="227" onclick="clickCase(this)"></div>
+        <div class="case" id="228" onclick="clickCase(this)"></div>
+        <div class="case" id="229" onclick="clickCase(this)"></div>
+        <div class="case" id="230" onclick="clickCase(this)"></div>
+        <div class="case" id="231" onclick="clickCase(this)"></div>
+        <div class="case" id="232" onclick="clickCase(this)"></div>
+        <div class="case" id="233" onclick="clickCase(this)"></div>
+        <div class="case" id="234" onclick="clickCase(this)"></div>
+        <div class="case" id="235" onclick="clickCase(this)"></div>
+        <div class="case" id="236" onclick="clickCase(this)"></div>
+        <div class="case" id="237" onclick="clickCase(this)"></div>
+        <div class="case" id="238" onclick="clickCase(this)"></div>
+        <div class="case" id="239" onclick="clickCase(this)"></div>
+        <div class="case" id="240" onclick="clickCase(this)"></div>
+        <div class="case" id="241" onclick="clickCase(this)"></div>
+        <div class="case" id="242" onclick="clickCase(this)"></div>
+        <div class="case" id="243" onclick="clickCase(this)"></div>
+        <div class="case" id="244" onclick="clickCase(this)"></div>
+        <div class="case" id="245" onclick="clickCase(this)"></div>
+        <div class="case" id="246" onclick="clickCase(this)"></div>
+        <div class="case" id="247" onclick="clickCase(this)"></div>
+        <div class="case" id="248" onclick="clickCase(this)"></div>
+        <div class="case" id="249" onclick="clickCase(this)"></div>
+        <div class="case" id="250" onclick="clickCase(this)"></div>
+        <div class="case" id="251" onclick="clickCase(this)"></div>
+        <div class="case" id="252" onclick="clickCase(this)"></div>
+        <div class="case" id="253" onclick="clickCase(this)"></div>
+        <div class="case" id="254" onclick="clickCase(this)"></div>
+        <div class="case" id="255" onclick="clickCase(this)"></div>
+        <div class="case" id="256" onclick="clickCase(this)"></div>
+        <div class="case" id="257" onclick="clickCase(this)"></div>
+        <div class="case" id="258" onclick="clickCase(this)"></div>
+        <div class="case" id="259" onclick="clickCase(this)"></div>
+        <div class="case" id="260" onclick="clickCase(this)"></div>
+        <div class="case" id="261" onclick="clickCase(this)"></div>
+        <div class="case" id="262" onclick="clickCase(this)"></div>
+        <div class="case" id="263" onclick="clickCase(this)"></div>
+        <div class="case" id="264" onclick="clickCase(this)"></div>
+        <div class="case" id="265" onclick="clickCase(this)"></div>
+        <div class="case" id="266" onclick="clickCase(this)"></div>
+        <div class="case" id="267" onclick="clickCase(this)"></div>
+        <div class="case" id="268" onclick="clickCase(this)"></div>
+        <div class="case" id="269" onclick="clickCase(this)"></div>
+        <div class="case" id="270" onclick="clickCase(this)"></div>
+        <div class="case" id="271" onclick="clickCase(this)"></div>
+        <div class="case" id="272" onclick="clickCase(this)"></div>
+        <div class="case" id="273" onclick="clickCase(this)"></div>
+        <div class="case" id="274" onclick="clickCase(this)"></div>
+        <div class="case" id="275" onclick="clickCase(this)"></div>
+        <div class="case" id="276" onclick="clickCase(this)"></div>
+        <div class="case" id="277" onclick="clickCase(this)"></div>
+        <div class="case" id="278" onclick="clickCase(this)"></div>
+        <div class="case" id="279" onclick="clickCase(this)"></div>
+        <div class="case" id="280" onclick="clickCase(this)"></div>
+        <div class="case" id="281" onclick="clickCase(this)"></div>
+        <div class="case" id="282" onclick="clickCase(this)"></div>
+        <div class="case" id="283" onclick="clickCase(this)"></div>
+        <div class="case" id="284" onclick="clickCase(this)"></div>
+        <div class="case" id="285" onclick="clickCase(this)"></div>
+        <div class="case" id="286" onclick="clickCase(this)"></div>
+        <div class="case" id="287" onclick="clickCase(this)"></div>
+        <div class="case" id="288" onclick="clickCase(this)"></div>
+        <div class="case" id="289" onclick="clickCase(this)"></div>
+        <div class="case" id="290" onclick="clickCase(this)"></div>
+        <div class="case" id="291" onclick="clickCase(this)"></div>
+        <div class="case" id="292" onclick="clickCase(this)"></div>
+        <div class="case" id="293" onclick="clickCase(this)"></div>
+        <div class="case" id="294" onclick="clickCase(this)"></div>
+        <div class="case" id="295" onclick="clickCase(this)"></div>
+        <div class="case" id="296" onclick="clickCase(this)"></div>
+        <div class="case" id="297" onclick="clickCase(this)"></div>
+        <div class="case" id="298" onclick="clickCase(this)"></div>
+        <div class="case" id="299" onclick="clickCase(this)"></div>
+        <div class="case" id="300" onclick="clickCase(this)"></div>
+        <div class="case" id="301" onclick="clickCase(this)"></div>
+        <div class="case" id="302" onclick="clickCase(this)"></div>
+        <div class="case" id="303" onclick="clickCase(this)"></div>
+        <div class="case" id="304" onclick="clickCase(this)"></div>
+        <div class="case" id="305" onclick="clickCase(this)"></div>
+        <div class="case" id="306" onclick="clickCase(this)"></div>
+        <div class="case" id="307" onclick="clickCase(this)"></div>
+        <div class="case" id="308" onclick="clickCase(this)"></div>
+        <div class="case" id="309" onclick="clickCase(this)"></div>
+        <div class="case" id="310" onclick="clickCase(this)"></div>
+        <div class="case" id="311" onclick="clickCase(this)"></div>
+        <div class="case" id="312" onclick="clickCase(this)"></div>
+        <div class="case" id="313" onclick="clickCase(this)"></div>
+        <div class="case" id="314" onclick="clickCase(this)"></div>
+        <div class="case" id="315" onclick="clickCase(this)"></div>
+        <div class="case" id="316" onclick="clickCase(this)"></div>
+        <div class="case" id="317" onclick="clickCase(this)"></div>
+        <div class="case" id="318" onclick="clickCase(this)"></div>
+        <div class="case" id="319" onclick="clickCase(this)"></div>
+        <div class="case" id="320" onclick="clickCase(this)"></div>
+        <div class="case" id="321" onclick="clickCase(this)"></div>
+        <div class="case" id="322" onclick="clickCase(this)"></div>
+        <div class="case" id="323" onclick="clickCase(this)"></div>
+        <div class="case" id="324" onclick="clickCase(this)"></div>
+        <div class="case" id="325" onclick="clickCase(this)"></div>
+        <div class="case" id="326" onclick="clickCase(this)"></div>
+        <div class="case" id="327" onclick="clickCase(this)"></div>
+        <div class="case" id="328" onclick="clickCase(this)"></div>
+        <div class="case" id="329" onclick="clickCase(this)"></div>
+        <div class="case" id="330" onclick="clickCase(this)"></div>
+        <div class="case" id="331" onclick="clickCase(this)"></div>
+        <div class="case" id="332" onclick="clickCase(this)"></div>
+        <div class="case" id="333" onclick="clickCase(this)"></div>
+        <div class="case" id="334" onclick="clickCase(this)"></div>
+        <div class="case" id="335" onclick="clickCase(this)"></div>
+        <div class="case" id="336" onclick="clickCase(this)"></div>
+        <div class="case" id="337" onclick="clickCase(this)"></div>
+        <div class="case" id="338" onclick="clickCase(this)"></div>
+        <div class="case" id="339" onclick="clickCase(this)"></div>
+        <div class="case" id="340" onclick="clickCase(this)"></div>
+        <div class="case" id="341" onclick="clickCase(this)"></div>
+        <div class="case" id="342" onclick="clickCase(this)"></div>
+        <div class="case" id="343" onclick="clickCase(this)"></div>
+        <div class="case" id="344" onclick="clickCase(this)"></div>
+        <div class="case" id="345" onclick="clickCase(this)"></div>
+        <div class="case" id="346" onclick="clickCase(this)"></div>
+        <div class="case" id="347" onclick="clickCase(this)"></div>
+        <div class="case" id="348" onclick="clickCase(this)"></div>
+        <div class="case" id="349" onclick="clickCase(this)"></div>
+        <div class="case" id="350" onclick="clickCase(this)"></div>
+        <div class="case" id="351" onclick="clickCase(this)"></div>
+        <div class="case" id="352" onclick="clickCase(this)"></div>
+        <div class="case" id="353" onclick="clickCase(this)"></div>
+        <div class="case" id="354" onclick="clickCase(this)"></div>
+        <div class="case" id="355" onclick="clickCase(this)"></div>
+        <div class="case" id="356" onclick="clickCase(this)"></div>
+        <div class="case" id="357" onclick="clickCase(this)"></div>
+        <div class="case" id="358" onclick="clickCase(this)"></div>
+        <div class="case" id="359" onclick="clickCase(this)"></div>
+        <div class="case" id="360" onclick="clickCase(this)"></div>
+        <div class="case" id="361" onclick="clickCase(this)"></div>
+        <div class="case" id="362" onclick="clickCase(this)"></div>
+        <div class="case" id="363" onclick="clickCase(this)"></div>
+        <div class="case" id="364" onclick="clickCase(this)"></div>
+        <div class="case" id="365" onclick="clickCase(this)"></div>
+        <div class="case" id="366" onclick="clickCase(this)"></div>
+        <div class="case" id="367" onclick="clickCase(this)"></div>
+        <div class="case" id="368" onclick="clickCase(this)"></div>
+        <div class="case" id="369" onclick="clickCase(this)"></div>
+        <div class="case" id="370" onclick="clickCase(this)"></div>
+        <div class="case" id="371" onclick="clickCase(this)"></div>
+        <div class="case" id="372" onclick="clickCase(this)"></div>
+        <div class="case" id="373" onclick="clickCase(this)"></div>
+        <div class="case" id="374" onclick="clickCase(this)"></div>
+        <div class="case" id="375" onclick="clickCase(this)"></div>
+        <div class="case" id="376" onclick="clickCase(this)"></div>
+        <div class="case" id="377" onclick="clickCase(this)"></div>
+        <div class="case" id="378" onclick="clickCase(this)"></div>
+        <div class="case" id="379" onclick="clickCase(this)"></div>
+        <div class="case" id="380" onclick="clickCase(this)"></div>
+        <div class="case" id="381" onclick="clickCase(this)"></div>
+        <div class="case" id="382" onclick="clickCase(this)"></div>
+        <div class="case" id="383" onclick="clickCase(this)"></div>
+        <div class="case" id="384" onclick="clickCase(this)"></div>
+        <div class="case" id="385" onclick="clickCase(this)"></div>
+        <div class="case" id="386" onclick="clickCase(this)"></div>
+        <div class="case" id="387" onclick="clickCase(this)"></div>
+        <div class="case" id="388" onclick="clickCase(this)"></div>
+        <div class="case" id="389" onclick="clickCase(this)"></div>
+        <div class="case" id="390" onclick="clickCase(this)"></div>
+        <div class="case" id="391" onclick="clickCase(this)"></div>
+        <div class="case" id="392" onclick="clickCase(this)"></div>
+        <div class="case" id="393" onclick="clickCase(this)"></div>
+        <div class="case" id="394" onclick="clickCase(this)"></div>
+        <div class="case" id="395" onclick="clickCase(this)"></div>
+        <div class="case" id="396" onclick="clickCase(this)"></div>
+        <div class="case" id="397" onclick="clickCase(this)"></div>
+        <div class="case" id="398" onclick="clickCase(this)"></div>
+        <div class="case" id="399" onclick="clickCase(this)"></div>
+        <div class="case" id="400" onclick="clickCase(this)"></div>
+      </div>
     </main>
     <div class="turns" id="turns">
-        <h2 id="turn-message">Player 1's turn</h2>
+      <h2 id="turn-message">Player 1's turn</h2>
     </div>
     <div class="winner" id="winner">
-        <h2 id="winner-message">Player 1 wins</h2>
-        <div class="buttons">
-            <button class="play-again" onclick="continueGame()">Continue</button>
-            <button class="play-again" onclick="clearCounter()">Start Over</button>
-        </div>
+      <h2 id="winner-message">Player 1 wins</h2>
+      <div class="buttons">
+        <button class="play-again" onclick="continueGame()">Continue</button>
+        <button class="play-again" onclick="clearCounter()">Start Over</button>
+      </div>
     </div>
     <div id="game-id">
-        <h2 class="gameID-title">Enter Game ID :</h2>
-        <p id="form-message">
-
-        </p>
-        <form onsubmit="return false;" method="get" class="id-form">
-            <input class="id-inp" type="text" name="game_id" id="game_id" required>
-            <div class="id-wrapper">
-                <button class="join-game" onclick="getInGame(this)">Join Game</button>
-                <button class="cancel-game">Cancel</button>
-            </div>
-        </form>
+      <h2 class="gameID-title">Enter Game ID :</h2>
+      <p id="form-message"></p>
+      <form onsubmit="return false;" method="get" class="id-form">
+        <input
+          class="id-inp"
+          type="text"
+          name="game_id"
+          id="game_id"
+          required
+        />
+        <div class="id-wrapper">
+          <button class="join-game" onclick="getInGame(this)">Join Game</button>
+          <button class="cancel-game">Cancel</button>
+        </div>
+      </form>
     </div>
     <div class="show-id" id="show-id">
-        <h1 class="gameID-title">Game ID :</h1>
-        <p class="info">Share This ID to play with a friend</p>
-        <span class="copier">
-            <button class="copy-id" onclick="copyToClipBoard(this)"><i class="bi bi-clipboard-x"></i></button>
-            <p id="id-share">
-                Error
-            </p>
-        </span>
-        <p class="info">
-            When someone will join the game you will start the game, until then wait.
-        </p>
+      <h1 class="gameID-title">Game ID :</h1>
+      <p class="info">Share This ID to play with a friend</p>
+      <span class="copier">
+        <button class="copy-id" onclick="copyToClipBoard(this)">
+          <i class="bi bi-clipboard-x"></i>
+        </button>
+        <p id="id-share">Error</p>
+      </span>
+      <p class="info">
+        When someone will join the game you will start the game, until then
+        wait.
+      </p>
     </div>
     <div id="protection"></div>
-</body>
+  </body>
 </html>

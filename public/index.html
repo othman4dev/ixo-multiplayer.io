@@ -1,82 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="images/logo.webp" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="images/logo.webp" type="image/x-icon" />
     <title>ixo.io | a minimalistic x-o game</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="logo-wrapper">
-            <img src="images/logo.webp" alt="" class="logo">
-            ixo.io
-        </div>
-        <nav>
-            <ul>
-                <li><i class="bi bi-github"></i><a href="https://github.com/othman4dev/iox.io">GitHub</a></li>
-                <li><i class="bi bi-coin"></i><a href="buymeacoffee.com/OthmanKharbouch">Support</a></li>
-                <li><i class="bi bi-code-slash"></i><a href="https://otmankharbouch.live">Developper</a></li>
-            </ul>
-        </nav>
+      <div class="logo-wrapper">
+        <img src="images/logo.webp" alt="" class="logo" />
+        ixo.io
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <i class="bi bi-github"></i
+            ><a href="https://github.com/othman4dev/ixo-multiplayer.io"
+              >GitHub</a
+            >
+          </li>
+          <li>
+            <i class="bi bi-coin"></i
+            ><a href="buymeacoffee.com/OthmanKharbouch">Support</a>
+          </li>
+          <li>
+            <i class="bi bi-code-slash"></i
+            ><a href="https://otmankharbouch.live">Developper</a>
+          </li>
+        </ul>
+      </nav>
     </header>
     <main id="intro">
-        <h1>ixo.io</h1>
-        <h4 class="rules-title">Rules :</h4>
-        <p class="rules">
-            1. The game is played on a grid that's 20 squares by 20 squares. <br>
-            2. Player 1 is X, Player 2 is O. Players take turns putting their marks in empty squares. <br>
-            3. The first player to get 5 of their marks in a row (up, down, across, or diagonally) gets a point. <br>
-            4. The board is reset after each point. <br>
-            5. When all 400 squares are full, the game is over. If both players has the same amount of points the game ends in a tie.
-            6. The player with the most points wins.
-        </p>
-        <button class="start-game" onclick="window.location.href = 'offline.html'">Start Game <br> <p style="font-size: 9px;">( Offline )</p></button>
-        <button class="start-game" onclick="window.location.href = 'online.html?create'">Create Game <br> <p style="font-size: 9px;">( Online )</p></button>
-        <button class="start-game" onclick="window.location.href = 'online.html?join'">Join Game <br> <p style="font-size: 9px;">( Online )</p></button>
+      <h1>ixo.io</h1>
+      <h4 class="rules-title">Rules :</h4>
+      <p class="rules">
+        1. The game is played on a grid that's 20 squares by 20 squares. <br />
+        2. Player 1 is X, Player 2 is O. Players take turns putting their marks
+        in empty squares. <br />
+        3. The first player to get 5 of their marks in a row (up, down, across,
+        or diagonally) gets a point. <br />
+        4. The board is reset after each point. <br />
+        5. When all 400 squares are full, the game is over. If both players has
+        the same amount of points the game ends in a tie. 6. The player with the
+        most points wins.
+      </p>
+      <button
+        class="start-game"
+        onclick="window.location.href = 'offline.html'"
+      >
+        Start Game <br />
+        <p style="font-size: 9px">( Offline )</p>
+      </button>
+      <button
+        class="start-game"
+        onclick="window.location.href = 'online.html?create'"
+      >
+        Create Game <br />
+        <p style="font-size: 9px">( Online )</p>
+      </button>
+      <button
+        class="start-game"
+        onclick="window.location.href = 'online.html?join'"
+      >
+        Join Game <br />
+        <p style="font-size: 9px">( Online )</p>
+      </button>
     </main>
     <div class="turns" id="turns">
-        <h2 id="turn-message">Player 1's turn</h2>
+      <h2 id="turn-message">Player 1's turn</h2>
     </div>
     <div class="winner" id="winner">
-        <h2 id="winner-message">Player 1 wins</h2>
-        <div class="buttons">
-            <button class="play-again" onclick="continueGame()">Continue</button>
-            <button class="play-again" onclick="clearCounter()">Start Over</button>
-        </div>
+      <h2 id="winner-message">Player 1 wins</h2>
+      <div class="buttons">
+        <button class="play-again" onclick="continueGame()">Continue</button>
+        <button class="play-again" onclick="clearCounter()">Start Over</button>
+      </div>
     </div>
     <div id="game-id">
-        <h2 class="gameID-title">Enter Game ID :</h2>
-        <p id="form-message">
-
-        </p>
-        <form onsubmit="return false;" method="get" class="id-form">
-            <input class="id-inp" type="text" name="game_id" id="game_id" required>
-            <div class="id-wrapper">
-                <button class="join-game" onclick="getInGame(this)">Join Game</button>
-                <button class="cancel-game">Cancel</button>
-            </div>
-        </form>
+      <h2 class="gameID-title">Enter Game ID :</h2>
+      <p id="form-message"></p>
+      <form onsubmit="return false;" method="get" class="id-form">
+        <input
+          class="id-inp"
+          type="text"
+          name="game_id"
+          id="game_id"
+          required
+        />
+        <div class="id-wrapper">
+          <button class="join-game" onclick="getInGame(this)">Join Game</button>
+          <button class="cancel-game">Cancel</button>
+        </div>
+      </form>
     </div>
     <div class="show-id" id="show-id">
-        <h1 class="gameID-title">Game ID :</h1>
-        <p class="info">Share This ID to play with a friend</p>
-        <span class="copier">
-            <button class="copy-id" onclick="copyToClipBoard(this)"><i class="bi bi-clipboard-x"></i></button>
-            <p id="id-share">
-                Error
-            </p>
-        </span>
-        <p class="info">
-            When someone will join the game you will start the game, until then wait.
-        </p>
+      <h1 class="gameID-title">Game ID :</h1>
+      <p class="info">Share This ID to play with a friend</p>
+      <span class="copier">
+        <button class="copy-id" onclick="copyToClipBoard(this)">
+          <i class="bi bi-clipboard-x"></i>
+        </button>
+        <p id="id-share">Error</p>
+      </span>
+      <p class="info">
+        When someone will join the game you will start the game, until then
+        wait.
+      </p>
     </div>
     <div id="protection"></div>
-</body>
+  </body>
 </html>
-<script>
-
-</script>
+<script></script>
